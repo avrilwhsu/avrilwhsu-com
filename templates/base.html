@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <nav class="topnav">
+        <a class="brand" href="{{ url_for('home') }}">Avril W. Hsu</a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('for_professionals') }}" class="{% if request.endpoint == 'for_professionals' %}active{% endif %}">For professionals</a></li>
+            <li><a href="{{ url_for('for_business_ideas') }}" class="{% if request.endpoint == 'for_business_ideas' %}active{% endif %}">For founders</a></li>
+            <li><a href="{{ url_for('substack') }}" class="{% if request.endpoint == 'substack' %}active{% endif %}">Key insights</a></li>
+            <li><a href="{{ url_for('ai_companion') }}" class="{% if request.endpoint == 'ai_companion' %}active{% endif %}">AI companion</a></li>
+            <li><a href="{{ url_for('connect') }}" class="{% if request.endpoint == 'connect' %}active{% endif %}">Contact</a></li>
+            <li><a class="social-icon" href="https://linkedin.com/in/avrilwhsu" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <img src="{{ url_for('static', filename='icons/linkedin.svg') }}" alt="">
+            </a></li>
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}
+    <footer class="site-footer">
+        <p>Copyright &copy; 2026 by Avril W. Hsu. All Rights Reserved. Built with Claude Code.</p>
+    </footer>
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const links = document.querySelector('.nav-links');
+        toggle.addEventListener('click', () => {
+            const open = links.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', open);
+            toggle.classList.toggle('open', open);
+        });
+    </script>
+</body>
+</html>
