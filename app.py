@@ -35,12 +35,7 @@ def login_required(view):
 
 @app.route("/")
 def home():
-    return render_template("home_v3.html")
-
-
-@app.route("/v3")
-def home_v3():
-    return render_template("home_v3.html")
+    return render_template("home.html")
 
 
 @app.route("/why-this-works")
