@@ -38,16 +38,6 @@ def home():
     return render_template("home_v3.html")
 
 
-@app.route("/v1")
-def home_v1():
-    return render_template("home.html")
-
-
-@app.route("/v2")
-def home_v2():
-    return render_template("home_v2.html")
-
-
 @app.route("/v3")
 def home_v3():
     return render_template("home_v3.html")
