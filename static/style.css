@@ -375,8 +375,9 @@ h1, h2, .credentials-lede {
 
 .hero-side-content h1 {
     font-size: clamp(1.75rem, 3vw, 2.375rem);
-    margin: 0;
+    margin: 0 0 1rem;
     line-height: 1.2;
+    text-align: center;
 }
 
 .hero-side-content p {
@@ -833,4 +834,19 @@ h1, h2, .credentials-lede {
     .btn {
         text-align: center;
     }
+}
+
+.rotator {
+    display: inline-block;
+    min-width: 11em;
+    text-align: center;
+    border-bottom: 1px solid #000;
+}
+
+.rotator-text {
+    transition: opacity 0.3s ease;
+}
+
+.rotator-fade {
+    opacity: 0;
 }

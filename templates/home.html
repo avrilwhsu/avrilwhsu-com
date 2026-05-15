@@ -5,20 +5,12 @@
 {% block content %}
 <section class="hero-side">
     <div class="hero-side-content">
-        <h1>Reinvent yourself into<br class="break-desktop"><span class="highlight">AI-era economy</span><br class="break-desktop">without losing yourself.</h1>
-        <p>Hi, I'm Avril! I help professionals and businesses evolving into AI-era work.</p>
-        <p>It starts with what's distinctively yours and AI that amplifies it where it actually fits.</p>
-        <div class="hero-cards">
-            <a class="hero-card" href="{{ url_for('for_professionals') }}">
-                <h3>For people</h3>
-                <p>Built on your strengths and thinking patterns.</p>
-                <span class="hero-card-cta">Learn more <span class="hero-card-arrow">&rarr;</span></span>
-            </a>
-            <a class="hero-card" href="{{ url_for('for_business_ideas') }}">
-                <h3>For aspiring founders</h3>
-                <p>Built on your value chain and market differentiator.</p>
-                <span class="hero-card-cta">Learn more <span class="hero-card-arrow">&rarr;</span></span>
-            </a>
+        <h1>Build yourself into<br class="break-desktop"><span class="highlight">AI roles as real operators.</span><br class="break-desktop"><span style="display:block; height:1em;" aria-hidden="true"></span><span style="display:block; text-align:center; font-style:italic; font-size:0.85em;">"Not being seen as just the <span class="rotator" style="color:#bbb; font-style:italic;"><span id="rotator" class="rotator-text">roadmap PM</span></span> anymore."</span></h1>
+        <p>Hi, I'm Avril! Silicon Valley-based AI coach. I help ambitious professionals and teams break into AI-era work.</p>
+        <p>In our work together, I'm part coach, part guide, part advisor. The path is specific to you, the career you built before AI, the one you want now.</p>
+        <p>No generic curriculum. No turning you into someone you're not. We build on your existing strengths and use AI to amplify them where it fits.</p>
+        <div style="display:flex; justify-content:center; margin-top:0.5rem;">
+            <a class="btn btn-primary" href="{{ url_for('connect') }}">I'm interested</a>
         </div>
     </div>
     <div class="hero-side-image">
@@ -38,7 +30,7 @@
         </div>
         <div class="trusted-by-extras">
             <p>+ Founders and founding teams building AI-first products</p>
-            <p>+ Solopreneurs and small business owners leveraging AI as their advantage</p>
+            <p>+ Business owners using AI as their company's advantage</p>
         </div>
     </div>
 </section>
@@ -67,21 +59,33 @@
                 <li>A designer who wasn't sure what to do with their legal background now combines the two with AI in the mix. The hybrid that once felt like a wandering path now compounds into the kind of work companies pay premium for and others can't quite copy.</li>
             </ul>
         </div>
-    </div>
-</section>
 
-<section class="verbatims">
-    <p class="credentials-lede">Where this all comes from</p>
-
-    <div class="credentials-body">
         <div class="credentials-block">
-            <p>Currently, I'm a Distinguished Member of Technical Staff in Dell's CTO office where I run real-world experiments to see where AI helps and where it falls short. I then extend this field-tested loop through academia in Georgetown where I teach and research to stay close to current AI research, then translate what&rsquo;s useful into methodologies and practices that help people move into AI roles, AI companies or build AI-first products.</p>
             <p>If you're thinking about a move, let's talk!</p>
         </div>
 
-        <div class="verbatims-cta">
-            <a class="btn btn-primary" href="{{ url_for('connect') }}">Schedule a discovery call</a>
+        <div class="verbatims-cta" style="flex-direction:column; align-items:center; gap:0.5rem;">
+            <a class="btn btn-primary" href="{{ url_for('connect') }}">Schedule a quick chat</a>
+            <p style="margin:0; font-size:0.85rem; color:#888; font-style:italic;">Complimentary — your story, your goals, let's see if we're the right fit.</p>
         </div>
     </div>
 </section>
+
+
+<script>
+    (() => {
+        const el = document.getElementById('rotator');
+        if (!el) return;
+        const words = ['roadmap PM', 'design person', 'feature builder', 'idea person', 'business stakeholder'];
+        let i = 0;
+        setInterval(() => {
+            el.classList.add('rotator-fade');
+            setTimeout(() => {
+                i = (i + 1) % words.length;
+                el.textContent = words[i];
+                el.classList.remove('rotator-fade');
+            }, 300);
+        }, 2500);
+    })();
+</script>
 {% endblock %}
