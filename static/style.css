@@ -185,7 +185,7 @@ h1, h2, .credentials-lede {
 .trusted-by {
     text-align: center;
     width: 100%;
-    max-width: 960px;
+    max-width: 1280px;
 }
 
 .trusted-by-title {
@@ -196,11 +196,34 @@ h1, h2, .credentials-lede {
 }
 
 .trusted-by-logos {
+    overflow: hidden;
+    width: 100%;
+}
+
+.logos-track {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: clamp(1.5rem, 5vw, 3.5rem);
-    flex-wrap: wrap;
+    width: max-content;
+    animation: scroll-logos 40s linear infinite;
+}
+
+.logos-track > img {
+    margin-right: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.trusted-by-logos:hover .logos-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-logos {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logos-track {
+        animation: none;
+    }
 }
 
 .trusted-by-logos img {
@@ -228,8 +251,8 @@ h1, h2, .credentials-lede {
 }
 
 @media (max-width: 768px) {
-    .trusted-by-logos {
-        gap: 1.5rem;
+    .logos-track > img {
+        margin-right: 1.5rem;
     }
 
     .trusted-by-logos img {
