@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}You + AI &rarr; 10X Creativity — Avril W. Hsu{% endblock %}
+{% block body_class %}page-bg-white{% endblock %}
+
+{% block content %}
+<section class="article-hero">
+    <h1 class="article-hero-title">You + AI &rarr; 10X Creativity</h1>
+    <p class="article-hero-host">
+        Georgetown University AI Academy &middot; Summer 2026<br>
+        Guest Speaker: Avril W. Hsu, Industry SME
+    </p>
+</section>
+
+<div class="process">
+    <aside class="process-nav">
+        <ol>
+            <li><a href="#step-1" class="process-nav-item active" data-step="1">
+                <span class="process-num">1</span>
+                <span class="process-label">Where creativity hits a wall</span>
+            </a></li>
+            <li><a href="#step-2" class="process-nav-item" data-step="2">
+                <span class="process-num">2</span>
+                <span class="process-label">What AI changes about creative work</span>
+            </a></li>
+            <li><a href="#step-3" class="process-nav-item" data-step="3">
+                <span class="process-num">3</span>
+                <span class="process-label">The collaboration loop</span>
+            </a></li>
+            <li><a href="#step-4" class="process-nav-item" data-step="4">
+                <span class="process-num">4</span>
+                <span class="process-label">Patterns in practice</span>
+            </a></li>
+            <li><a href="#step-5" class="process-nav-item" data-step="5">
+                <span class="process-num">5</span>
+                <span class="process-label">Your creative edge</span>
+            </a></li>
+        </ol>
+    </aside>
+
+    <div class="process-content">
+        <section id="step-1" class="process-section">
+            <h2>1. Where creativity hits a wall</h2>
+            <p>Placeholder content for section 1. Replace with the real story.</p>
+        </section>
+        <section id="step-2" class="process-section">
+            <h2>2. What AI changes about creative work</h2>
+            <p>Placeholder content for section 2.</p>
+        </section>
+        <section id="step-3" class="process-section">
+            <h2>3. The collaboration loop</h2>
+            <p>Placeholder content for section 3.</p>
+        </section>
+        <section id="step-4" class="process-section">
+            <h2>4. Patterns in practice</h2>
+            <p>Placeholder content for section 4.</p>
+        </section>
+        <section id="step-5" class="process-section">
+            <h2>5. Your creative edge</h2>
+            <p>Placeholder content for section 5.</p>
+        </section>
+    </div>
+</div>
+
+<div class="container" style="text-align:center; padding:3rem 1.5rem;">
+    <p><a href="{{ url_for('substack', _anchor='keynotes') }}">&larr; Back to Keynotes</a></p>
+</div>
+
+<script>
+    (() => {
+        const navItems = document.querySelectorAll('.process-nav-item');
+        const sections = document.querySelectorAll('.process-section');
+        const topnav = document.querySelector('.topnav');
+        const hero = document.querySelector('.article-hero');
+        if (!navItems.length || !sections.length) return;
+
+        const lastSectionId = sections[sections.length - 1].id;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    navItems.forEach(item => {
+                        item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
+                    });
+
+                    if (topnav) {
+                        const showNav = entry.target.classList.contains('article-hero') || id === lastSectionId;
+                        topnav.classList.toggle('topnav-hidden', !showNav);
+                    }
+                }
+            });
+        }, {
+            rootMargin: '-40% 0px -50% 0px'
+        });
+
+        sections.forEach(section => observer.observe(section));
+        if (hero) observer.observe(hero);
+    })();
+</script>
+{% endblock %}

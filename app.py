@@ -53,6 +53,11 @@ def substack():
     return render_template("substack.html")
 
 
+@app.route("/human-AI-collaboration-creativity")
+def human_ai_collaboration_creativity():
+    return render_template("human_ai_collaboration_creativity.html")
+
+
 @app.route("/ai-companion")
 def ai_companion():
     return render_template("ai_companion.html")

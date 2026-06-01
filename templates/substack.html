@@ -4,7 +4,7 @@
 {% block body_class %}page-bg-white{% endblock %}
 
 {% block content %}
-<div class="container" style="padding-top:5.5rem;">
+<div class="container" style="padding-top:5.5rem; padding-bottom:4rem;">
     <section style="text-align:center;">
         <h1>Become a sharper AI operator</h1>
 
@@ -23,4 +23,28 @@
         <p class="disclaimer">And yes, I do write it my human self. AI is being used only in field experimenting and demonstration. I know you may be wondering.</p>
     </section>
 </div>
+
+<section id="keynotes" class="hero-strip" style="min-height:100vh; flex-direction:column; justify-content:flex-start; padding-top:4rem; scroll-margin-top:4rem;">
+    <h2 style="margin:0 0 2rem; text-align:center; font-size:2rem; line-height:1.2;">Keynotes</h2>
+    <div class="insight-cards-row">
+        <a class="insight-card-wrapper insight-card-link" href="{{ url_for('human_ai_collaboration_creativity') }}">
+            <div class="insight-card insight-card-with-image">
+                <img src="{{ url_for('static', filename='card1.png') }}" alt="You + AI → 10X Creativity">
+            </div>
+            <h3 class="insight-card-title"><span class="card-title-text">You + AI &rarr;<br>10X Creativity</span></h3>
+        </a>
+        <div class="insight-card-wrapper">
+            <div class="insight-card insight-card-with-image">
+                <img src="{{ url_for('static', filename='card2.png') }}" alt="Card 2">
+            </div>
+            <h3 class="insight-card-title"><span class="card-title-text">You + AI &rarr;<br>10X Building Products</span></h3>
+        </div>
+        <div class="insight-card-wrapper">
+            <div class="insight-card insight-card-with-image">
+                <img src="{{ url_for('static', filename='card3.png') }}" alt="Card 3">
+            </div>
+            <h3 class="insight-card-title"><span class="card-title-text">You + AI &rarr;<br>10X Scenario Building</span></h3>
+        </div>
+    </div>
+</section>
 {% endblock %}
