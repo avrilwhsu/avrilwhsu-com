@@ -247,6 +247,10 @@ h1, h2, .credentials-lede {
     transform: translateY(-3px);
 }
 
+.trusted-by-logos img.logo-hoya {
+    height: 48px;
+}
+
 .trusted-by-extras {
     margin-top: 1.5rem;
     display: flex;

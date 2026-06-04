@@ -587,3 +587,296 @@ if (entry.isIntersecting) {
 
 One of the cheapest, highest-impact patterns in the doc. Whenever you want to make a data point pop on a marketing page — this is the technique.
 
+---
+
+## 9. Scroll-triggered staggered reveal (the "cascade" effect within a section)
+
+**What you see on Project Deal**: Inside each of the 6 numbered process steps (Intake Interview, Agent Assignment, etc.), when you scroll into a section, the content elements appear **one by one with a small delay between each** — not all at once. First the heading slides up, then ~150ms later the first paragraph, then the second, etc. Your eye follows the cascade.
+
+**Different from**: the basic "fade-in-on-scroll" entrance (Section 1) where everything in a section appears together. Stagger reveal adds *rhythm* — the section feels choreographed and intentional.
+
+### Industry names
+- **Stagger reveal** / **staggered entrance**
+- **Cascade animation** / **cascade reveal**
+- **Sequential reveal** / **sequenced fade-in**
+- **Scroll-triggered stagger**
+- In Framer Motion specifically: **`staggerChildren`** transition
+
+### What we could verify
+- WebFetch only sees server-rendered HTML; the actual animation logic is React/Framer Motion in compiled bundles, invisible to scraping
+- But the *effect* is observable in any modern browser — definitively present on the page
+
+### Three implementation paths (ranked by your Flask + vanilla JS stack)
+
+#### Pattern A — IntersectionObserver + CSS `transition-delay` (recommended)
+**How it works**:
+1. Section enters viewport → JS adds `.is-visible` class to the section
+2. CSS uses `:nth-child(n)` selectors to apply increasing `transition-delay` to each child element
+3. Each child fades + translates in with its assigned delay
+
+**Code footprint**: ~15 lines JS + ~15 lines CSS, no library.
+
+**The CSS**:
+```css
+.process-section > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.process-section.is-visible > * {
+    opacity: 1;
+    transform: none;
+}
+
+.process-section.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+.process-section.is-visible > *:nth-child(2) { transition-delay: 0.2s; }
+.process-section.is-visible > *:nth-child(3) { transition-delay: 0.35s; }
+.process-section.is-visible > *:nth-child(4) { transition-delay: 0.5s; }
+.process-section.is-visible > *:nth-child(5) { transition-delay: 0.65s; }
+.process-section.is-visible > *:nth-child(6) { transition-delay: 0.8s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .process-section > * {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+```
+
+**The JS** — extend the existing IntersectionObserver by adding `is-visible` on intersection:
+```js
+if (entry.isIntersecting) {
+    entry.target.classList.add('is-visible');
+    // ... rest of existing TOC active-state logic
+}
+```
+
+#### Pattern B — Pure CSS `animation-timeline: view()` (no JS at all)
+**How it works**: CSS scroll-driven animations tie each element's opacity/translate to scroll position. The browser handles everything; no JS needed.
+
+```css
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.process-section > * {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+}
+
+.process-section > *:nth-child(1) { animation-delay: 0s; }
+.process-section > *:nth-child(2) { animation-delay: 0.15s; }
+/* ... etc ... */
+```
+
+**Tradeoff**: requires Chrome 115+, Safari 18+, Firefox 121+ (2024+ browsers). Universal support in 2026 but very old devices might not see the effect.
+
+#### Pattern C — Framer Motion `staggerChildren` (what Anthropic uses)
+**How it works**: in React with Framer Motion:
+```jsx
+<motion.section
+    variants={{ animate: { transition: { staggerChildren: 0.15 } } }}
+    initial="initial"
+    whileInView="animate"
+>
+    <motion.h2 variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }}>...</motion.h2>
+    <motion.p variants={...}>...</motion.p>
+</motion.section>
+```
+
+**Tradeoff**: requires React + Framer Motion. Not applicable to Flask without stack change.
+
+### Tunable parameters (Pattern A)
+
+| Parameter | Default | Snappier | More dramatic |
+|---|---|---|---|
+| **Stagger delay** | `0.15s` between siblings | `0.08s` | `0.25s` |
+| **Translate distance** | `20px` | `10px` (subtle) | `40px` (pronounced) |
+| **Transition duration** | `0.6s` | `0.4s` | `0.8s` |
+| **Easing** | `ease` | `ease-out` | `cubic-bezier(0.2, 0.8, 0.2, 1)` |
+
+### When to use this pattern
+
+✅ **Good fit**:
+- Long-form scrollytelling pages (Anthropic Project Deal, your article pages)
+- Multi-paragraph sections that benefit from visual rhythm
+- Pages where each section has 3+ child elements (headings, paragraphs, images, callouts)
+
+❌ **Skip**:
+- Single-element sections (just a heading + image) — there's nothing to "cascade"
+- Scannable / table-heavy pages where readers want to absorb everything at once
+- Forms or checkout flows — staggering input fields is annoying
+
+### Integration with existing patterns on avrilwhsu-com
+
+The article page `/human-AI-collaboration-creativity` already uses:
+- Section 7 pattern (sticky numbered TOC)
+- Scroll-snap (`html:has(.process) { scroll-snap-type: y mandatory; }`)
+- Topnav-hide-during-snap effect
+
+This stagger pattern composes cleanly on top — extend the existing IntersectionObserver to also toggle `.is-visible` on each section, add the CSS, done. ~30 extra lines of code, no conflicts with the snap/sticky behavior.
+
+### Implementation difficulty on Flask stack
+- **CSS**: ~15 lines
+- **JS**: ~1 line addition to existing observer (`entry.target.classList.add('is-visible')`)
+- **Total**: ~16 lines on top of what's already on the article page
+
+One of the highest-leverage patterns to add on top of existing scroll-snap pages. Transforms static sections into choreographed reveals with minimal code.
+
+---
+
+## 9b. Pattern A-progressive: reveal-as-you-scroll (variable-height sections)
+
+**Variation of Section 9.** Use this when you want each section to be **as tall as its content needs** (not fixed at 100vh), and content items reveal progressively as the user scrolls deeper into the section — rather than all cascading in when the section enters viewport.
+
+### How it differs from Pattern A (Section 9)
+
+| Aspect | Pattern A (cascade on enter) | Pattern A-progressive (reveal as you scroll) |
+|---|---|---|
+| **Section height** | Fixed `min-height: 100vh` | Variable, content-driven |
+| **Reveal trigger** | Section enters viewport | Each child enters viewport |
+| **Reveal timing** | All children cascade with stagger delays | Each child reveals when it crosses viewport line |
+| **Scroll-snap mode** | Works with `mandatory` | Requires `proximity` (mandatory traps users in tall sections) |
+| **User experience** | One choreographed reveal per section | Continuous reveal as user scrolls deeper |
+| **Best for** | Short sections, cinematic snap rhythm | Long-form sections, reading-friendly flow |
+
+### The 3 implementation changes vs. Section 9
+
+#### 1. Remove the `min-height: 100vh` constraint
+```css
+.process-section {
+    /* min-height: 100vh;  ← remove this */
+    scroll-snap-align: start;
+    padding: 7.5rem 0 4rem;
+}
+```
+Sections now size to their content. A section with 2 paragraphs is ~60vh tall; a section with 10 paragraphs + 3 images is ~400vh tall.
+
+#### 2. Observer watches each child item, not whole sections
+```js
+const items = document.querySelectorAll('.process-section > *');
+const itemObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    });
+}, {
+    rootMargin: '0px 0px -20% 0px',   // triggers when item is 20% above viewport bottom
+    threshold: 0.1                     // requires 10% visible
+});
+items.forEach(item => itemObserver.observe(item));
+```
+
+CSS becomes simpler — no `:nth-child` delays needed since each item reveals independently:
+```css
+.process-section > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.process-section > *.is-visible {
+    opacity: 1;
+    transform: none;
+}
+```
+
+#### 3. Switch scroll-snap mode from `mandatory` to `proximity`
+```css
+html:has(.process) {
+    scroll-snap-type: y proximity;  /* was: mandatory */
+}
+```
+
+With `mandatory`, tall sections trap users — browser keeps snapping back to section boundaries while they're reading mid-section. **Proximity** lets users scroll freely within a tall section, and only nudges to snap when they're close to the next section boundary. This is what Anthropic Project Deal uses.
+
+### Full UX flow (8 sections, applied to your article page)
+
+1. User lands on hero (snap point) → topnav visible, reads the title + Georgetown credit
+2. Scrolls down → section 1 top approaches → proximity snap to section 1 start
+3. Section 1's h2 enters viewport → reveals (cascade-free, just fades up)
+4. User keeps scrolling within section 1 → items below reveal one by one as they cross viewport
+5. Section 1 content ends → next snap point (section 2 top) approaches → proximity snap to section 2
+6. Repeat through all 8 sections
+7. After section 8 → scroll continues to back-link
+8. Topnav still hides during sections 1-7 (existing logic works because that observer watches sections, not items)
+
+### Click-to-jump behavior (TOC interactions)
+
+The click-to-section behavior **stays intact**. When user clicks any TOC item:
+
+1. Browser smooth-scrolls to that section's `#step-N` anchor (via existing `html { scroll-behavior: smooth }`)
+2. Section snaps with its top at viewport (snap-margin handles topnav clearance)
+3. **Only the h2 headline reveals on arrival** (it's the first item in viewport)
+4. **Below-viewport content stays hidden** (opacity: 0) — paragraphs, images, callouts deeper in the section wait
+5. User scrolls down → each item below crosses viewport line → reveals one at a time
+6. User reads → scrolls → next item reveals → continues until end of section
+7. Approaching next section boundary → gentle proximity snap to next section
+
+This delivers the "click jumps to headline, scroll reveals progressively" experience.
+
+### Small caveat about smooth-scroll transit
+
+When a user clicks "skip to section 8" from way up the page, the smooth-scroll **passes through** sections 2-7 during transit. Each section's h2 briefly enters the viewport as the scroll position moves down. The IntersectionObserver fires for those h2's during transit → they get marked visible while in motion.
+
+User impact:
+- **Destination section (section 8)**: behaves exactly as designed — h2 reveals on arrival, deeper content waits for scroll ✅
+- **Sections the scroll passed through**: their h2's are now marked visible. If user later scrolls back to revisit section 4, the h2 is already revealed (they lose the "fresh reveal" moment for the headline).
+- **Deep content below h2 in passed-through sections**: still hidden, since those items never entered viewport during transit. They reveal correctly when user scrolls down to them.
+
+**Is this a problem?** Realistically, no. Users who click "jump to section 8" rarely scroll back to section 4 immediately. The h2 being pre-revealed isn't jarring when they do.
+
+### Polish options if you want bulletproof behavior
+
+If you want every section to feel "fresh" on first proper visit (not transit):
+
+#### Option 1: Disable observer during programmatic scrolls
+```js
+let isProgrammaticScroll = false;
+
+document.querySelectorAll('.process-nav-item').forEach(link => {
+    link.addEventListener('click', () => {
+        isProgrammaticScroll = true;
+        setTimeout(() => { isProgrammaticScroll = false; }, 800);  // smooth-scroll duration
+    });
+});
+
+const itemObserver = new IntersectionObserver((entries) => {
+    if (isProgrammaticScroll) return;
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    });
+}, { ... });
+```
+~10 extra lines of JS. Items in transit-through sections stay hidden; only destination section's h2 reveals.
+
+#### Option 2: Remove `.is-visible` on scroll-leave
+Items hide again when they leave viewport. On next entry, they re-reveal. More "alive" but can feel busy if user scrolls back and forth.
+```js
+entries.forEach(entry => {
+    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+});
+```
+
+Neither is necessary for the default behavior to work — they're polish moves.
+
+### When to choose Pattern A vs. Pattern A-progressive
+
+| Use Pattern A (cascade on enter) | Use Pattern A-progressive (reveal as scroll) |
+|---|---|
+| Sections fit in ~100vh of content | Sections have substantial content (>100vh) |
+| You want cinematic mandatory snap rhythm | You want reading-friendly proximity snap |
+| Each section is a quick "beat" | Each section is a deeper reading experience |
+| Animation should feel like one choreographed moment | Animation should feel like progressive discovery |
+
+For the avrilwhsu-com article pages, **Pattern A-progressive is the better fit** if you plan to write substantive content per section (multiple paragraphs, examples, images per section). For short content (1-2 paragraphs per section), Pattern A is fine.
+
+### Implementation cost on top of existing scroll-snap TOC page
+
+- **CSS changes**: ~10 lines (remove min-height, add per-item opacity/transform)
+- **JS changes**: ~10 lines (new IntersectionObserver for items)
+- **Mode change**: 1 line (mandatory → proximity)
+- **Total**: ~21 lines of changes/additions on top of the current article page implementation
+
