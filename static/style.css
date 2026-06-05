@@ -986,6 +986,8 @@ h1, h2, .credentials-lede {
     text-align: center;
     padding: 2rem 1.5rem;
     background: #fff;
+    position: relative;
+    z-index: 5;
 }
 
 .article-hero-title {
