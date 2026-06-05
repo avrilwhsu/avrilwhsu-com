@@ -880,3 +880,169 @@ For the avrilwhsu-com article pages, **Pattern A-progressive is the better fit**
 - **Mode change**: 1 line (mandatory → proximity)
 - **Total**: ~21 lines of changes/additions on top of the current article page implementation
 
+---
+
+## 10. Pinned scroll choreography (the "stack-up under pinned block" pattern)
+
+**What you see on Project Deal**: Inside the "1. Intake Interview" section, the first block (Claude image + tip question) stays visually pinned at the top. As you scroll, subsequent blocks **appear progressively in the empty viewport space below**, stacking up under the pinned block. The blocks don't scroll past the first block — they appear in place. Once all blocks have revealed and the user continues scrolling, the entire section releases and the next section snaps in.
+
+**Why it looks different from `position: sticky`**: with sticky, the first block stays put while OTHER CONTENT SCROLLS UP PAST IT. With this pattern, nothing scrolls past — content appears in viewport in place.
+
+### Industry names
+- **Pinned scroll choreography** / **Scroll-locked sections** / **Scroll-pinned timeline**
+- **Scrub animation** (the animation is "scrubbed" by scroll progress, like scrubbing a video timeline)
+- **GSAP ScrollTrigger pin** (after the most popular library implementing this)
+- In Framer Motion: **`useScroll` + `useTransform` with `whileInView`** doing equivalent work
+- Sometimes loosely called "scroll-jacking" (pejorative term when overdone)
+
+### How it differs visually from `position: sticky`
+
+| Behavior | `position: sticky` | Pinned scroll choreography |
+|---|---|---|
+| First block | Stays at sticky top offset | Stays at top |
+| Other blocks | **Scroll UP past** the sticky block (via z-index, slide under) | **Appear in place** in the empty viewport space below |
+| Page scroll | Drives normal scrolling of content | **Decoupled** — page scroll drives a timeline, not section position |
+| Visual feel | Things scrolling, sticky pinned | Nothing scrolling, content "stacking up" |
+| User experience | Continuous scroll | Discrete reveal beats |
+
+### The mechanism
+
+1. The section is **locked in the viewport** for a fixed scroll distance (e.g., user must scroll 2-3 viewport heights to pass through the section)
+2. During that locked range, the user's scroll position drives a **timeline of opacity/translate animations** on the child blocks
+3. **No element actually moves** in viewport — only opacity changes (and possibly small translate)
+4. Each block has a specific "fire point" within the locked scroll range:
+   - Block 1: visible from start (no animation, just appears)
+   - Block 2: opacity 0 → 1 between 25% and 35% scroll progress
+   - Block 3: opacity 0 → 1 between 50% and 60% scroll progress
+   - Block 4: opacity 0 → 1 between 75% and 85% scroll progress
+5. After the locked range completes, the pin releases and normal page scrolling resumes — next section snaps in.
+
+### Three implementation paths on a Flask + vanilla JS stack
+
+#### Option 1 — GSAP ScrollTrigger via CDN (most faithful to Anthropic)
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+ScrollTrigger.create({
+    trigger: ".section-1",
+    start: "top top",
+    end: "+=200%",      // pin for 2 viewport heights of scroll
+    pin: true,
+    scrub: true,
+    onUpdate: (self) => {
+        document.querySelector(".block-2").style.opacity = self.progress > 0.25 ? 1 : 0;
+        document.querySelector(".block-3").style.opacity = self.progress > 0.5  ? 1 : 0;
+        document.querySelector(".block-4").style.opacity = self.progress > 0.75 ? 1 : 0;
+    }
+});
+</script>
+```
+
+**Footprint**: ~30 lines of JS + 2 CDN script tags (~100KB total library size)
+**Trade-off**: adds GSAP as a dependency (see "Dependency" section below)
+
+#### Option 2 — Vanilla JS pinned scroll (no library)
+
+Write your own scroll-listener-based version using `position: fixed` + manual scroll math:
+
+```js
+const section = document.querySelector('.section-1');
+const blocks = document.querySelectorAll('.block-reveal');
+const PIN_DURATION = window.innerHeight * 2;  // 2 viewports
+
+window.addEventListener('scroll', () => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 0 && rect.top > -PIN_DURATION) {
+        // We're inside the pin range
+        section.style.position = 'fixed';
+        section.style.top = '0';
+        const progress = -rect.top / PIN_DURATION;
+        blocks.forEach((block, i) => {
+            const fireAt = (i + 1) / (blocks.length + 1);
+            block.style.opacity = progress > fireAt ? 1 : 0;
+        });
+    } else {
+        section.style.position = '';
+    }
+});
+```
+
+**Footprint**: ~80-100 lines of vanilla JS (need to handle edge cases, easing, etc.)
+**Trade-off**: more code to write/maintain; harder to get smooth feel without library helpers
+
+#### Option 3 — Stacking sticky (pure CSS approximation, no JS, no library)
+
+Each block has `position: sticky` with INCREASING `top` offsets, so they pile up visually:
+
+```html
+<section class="stacking">
+    <div class="block" style="position: sticky; top: 5vh; background: white;">Block 1</div>
+    <div class="block" style="position: sticky; top: 25vh; background: white;">Block 2</div>
+    <div class="block" style="position: sticky; top: 45vh; background: white;">Block 3</div>
+    <div class="block" style="position: sticky; top: 65vh; background: white;">Block 4</div>
+</section>
+```
+
+As user scrolls, each block sticks at its own offset, creating a visual "stack". When section ends, they all release together.
+
+**Footprint**: ~10 lines of CSS, zero JS
+**Trade-off**: less control over timing/animation; "stair-step" look rather than smooth choreography
+
+### What "dependency" means (for context)
+
+A dependency is **external code your site relies on**. For each option:
+
+| Option | Dependency | Implication |
+|---|---|---|
+| **Option 1** | ✅ GSAP library (~100KB) | You add `<script src="cdn...">`. If CDN is down or library changes API, scroll effect breaks. Mitigation: self-host the library file in `static/`. |
+| **Option 2** | ❌ None | All code is yours. Never breaks from external changes. More code to maintain. |
+| **Option 3** | ❌ None | Pure CSS. Browser handles it natively. Most reliable. |
+
+Your current site has **zero frontend library dependencies** (Flask + vanilla JS + vanilla CSS). Adding GSAP would be your first frontend library. Not necessarily bad — but worth knowing it's a meaningful shift in stack architecture.
+
+### Pros & cons of dependencies
+
+**Pros**:
+- Powerful features without writing them (~30 lines GSAP code vs. ~80 lines vanilla JS for same effect)
+- Battle-tested, edge cases handled
+- Active community for support
+
+**Cons**:
+- **Bigger page weight** (~100KB extra for GSAP) — slower page load on mobile
+- **External reliance** — CDN downtime breaks your site
+- **Version drift** — library updates may require code updates over time
+- **Offline failure** — CDN-loaded libraries don't work without internet (matters for in-person presentations with unreliable venue Wi-Fi)
+
+### When to choose which option
+
+| Choice | Best when |
+|---|---|
+| **Option 1 (GSAP)** | You want faithful Anthropic-style behavior, are comfortable adding a library, page is for online audience |
+| **Option 2 (Vanilla JS)** | You want the effect without a library, willing to write more code, value zero-dependency |
+| **Option 3 (Stacking sticky)** | You want a quick CSS-only approximation, accept "stair-step" look, prioritize simplicity |
+
+### Recommendation for avrilwhsu-com specifically
+
+For the article pages (long-form Substack-like content): **stick with sticky-only** (the simpler pattern already implemented). The full Anthropic choreography is overkill for written articles.
+
+For the high schooler presentation (the upcoming Georgetown session page): **Option 1 (GSAP)** is worth the dependency cost because:
+- Presentations benefit from cinematic scroll moments
+- High schoolers are visually demanding audience
+- The presentation page is a one-shot experience, not a long-lived archive
+- ~100KB extra JS is acceptable for one page if your other pages stay light
+
+For everywhere else: **avoid the pattern**. Use sticky or progressive reveal (Sections 9, 9b) which are zero-dependency and good enough for 95% of marketing pages.
+
+### Implementation cost summary
+
+| Option | Lines | Setup time | Dependency |
+|---|---|---|---|
+| GSAP ScrollTrigger | ~30 lines JS | 30 min | GSAP (~100KB) |
+| Vanilla JS pinned | ~80-100 lines JS | 2-3 hours | None |
+| Stacking sticky | ~10 lines CSS | 10 min | None |
+

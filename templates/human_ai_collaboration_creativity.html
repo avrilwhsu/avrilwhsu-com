@@ -5,10 +5,10 @@
 
 {% block content %}
 <section class="article-hero">
-    <h1 class="article-hero-title">You + AI &rarr; 10X Creativity</h1>
+    <h1 class="article-hero-title">You+AI &rarr; Creativity = Future<sub>yours</sub></h1>
     <p class="article-hero-host">
-        Georgetown University AI Academy &middot; Summer 2026<br>
-        Guest Speaker: Avril W. Hsu, Industry SME
+        Georgetown University AI Academy &middot; Summer 2026 &middot; High School Session<br>
+        Guest Speaker: Avril W. Hsu, Human-centered AI at Dell Chief AI Office
     </p>
 </section>
 
@@ -51,13 +51,46 @@
     </aside>
 
     <div class="process-content">
-        <section id="step-1" class="process-section">
-            <h2>Hi, I'm Avril.</h2>
-            <p>📍Silicon Valley<br>💼 Human-centered AI at Dell's Chief AI Office.</p>
+        <section id="step-1" class="process-section pinned-section">
+            <div class="pinned-content">
+                <div class="pinned-intro">
+                    <h2>Hi, I'm Avril.</h2>
+                    <p>📍Silicon Valley<br>💼 Human-centered AI at Dell's Chief AI Office.</p>
+                </div>
+                <div class="reveal-block" style="display:flex; flex-direction:column; gap:1.5rem;">
+                    <p>🚀 My Journey: 4 tech waves. Each one, pioneer work. 5 shapes of 🎯</p>
+                    <p>1. Physical &rarr; Digital: 18 international awards &middot; bringing emerging tech into connected products<br>
+                    2. Mobile: helped grow an early-stage startup to acquisition<br>
+                    3. Cloud: won a Fortune 50 innovation award &middot; featured alongside the CEO<br>
+                    4. AI: inventor on first batch of generative AI patents granted by USPTO &middot; commercialized</p>
+                    <p>One thing made all of this possible &mdash; and will keep working through whatever comes next: <strong class="highlight">creativity</strong>.</p>
+                </div>
+                <div class="reveal-block" style="display:flex; flex-direction:column; gap:1.5rem; margin-top:0.73rem;">
+                    <hr style="border:none; border-top:1px solid #9ca3af; margin:0;">
+                    <p>🗒️ Today's Topic: Human-centered AI collaboration &amp; Creativity</p>
+                    <p>What you'll actually get:<br>
+                    &rarr; Concrete concepts and real thinking<br>
+                    &rarr; A seed for college, career, and even the next "AI" disruption<br>
+                    &rarr; Something you can start today</p>
+                </div>
+                <div class="reveal-block" style="display:flex; flex-direction:column; gap:1.5rem; margin-top:0.73rem;">
+                    <hr style="border:none; border-top:1px solid #9ca3af; margin:0;">
+                    <p>⚡ What's possible because of AI: <strong class="highlight">Augmenting Creativity</strong></p>
+                    <p>The success recipe:<br>
+                    &rarr; Amplify your human strength<br>
+                    &rarr; Let AI do its best for what AI does best<br>
+                    &rarr; ❌ Avoid cognitive debt</p>
+                    <p>Done right, it compounds. Done wrong, it costs you.</p>
+                </div>
+            </div>
         </section>
-        <section id="step-2" class="process-section">
-            <h2>Before we go anywhere, let's hear from you</h2>
-            <p>Placeholder content for section 2.</p>
+        <section id="step-2" class="process-section pinned-section">
+            <div class="pinned-content">
+                <div class="pinned-intro">
+                    <h2>Before we go anywhere, let's hear from you</h2>
+                    <p>Menti Polls</p>
+                </div>
+            </div>
         </section>
         <section id="step-3" class="process-section">
             <h2>Why this matters more right now than it did five years ago</h2>
@@ -121,5 +154,71 @@
         sections.forEach(section => observer.observe(section));
         if (hero) observer.observe(hero);
     })();
+</script>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/gsap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ScrollTrigger.min.js') }}"></script>
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const pinnedSections = document.querySelectorAll('.pinned-section');
+    const allNavItems = document.querySelectorAll('.process-nav-item');
+    const topnav = document.querySelector('.topnav');
+    const allSections = document.querySelectorAll('.process-section');
+    const lastSectionId = allSections.length ? allSections[allSections.length - 1].id : null;
+
+    function setSectionActive(sectionId) {
+        allNavItems.forEach(item => {
+            item.classList.toggle('active', item.getAttribute('href') === `#${sectionId}`);
+        });
+        if (topnav) {
+            const showNav = sectionId === lastSectionId;
+            topnav.classList.toggle('topnav-hidden', !showNav);
+        }
+    }
+
+    pinnedSections.forEach((section) => {
+        const sectionId = section.id;
+        const revealBlocks = section.querySelectorAll('.reveal-block');
+        // Sections with reveal blocks pin longer (200%); empty ones pin briefly (100%)
+        const pinDuration = revealBlocks.length > 0 ? '+=200%' : '+=100%';
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: section,
+                start: 'top top',
+                end: pinDuration,
+                pin: true,
+                scrub: 1,
+                anticipatePin: 1,
+                onEnter: () => setSectionActive(sectionId),
+                onEnterBack: () => setSectionActive(sectionId)
+            }
+        });
+
+        if (revealBlocks.length > 0) {
+            revealBlocks.forEach((block, i) => {
+                tl.fromTo(block,
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 1 },
+                    1.5 + i * 2.5
+                );
+            });
+        }
+    });
+
+    // Per-item reveal for non-pinned sections (3-8)
+    const nonPinnedItems = document.querySelectorAll('.process-section:not(.pinned-section) > *');
+    const itemObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+    }, {
+        rootMargin: '0px 0px -20% 0px',
+        threshold: 0.1
+    });
+    nonPinnedItems.forEach(item => itemObserver.observe(item));
 </script>
 {% endblock %}
