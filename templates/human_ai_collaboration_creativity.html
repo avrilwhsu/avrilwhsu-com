@@ -5,7 +5,7 @@
 
 {% block content %}
 <section class="article-hero">
-    <h1 class="article-hero-title">You+AI &rarr; Creativity = Future<sub>yours</sub></h1>
+    <h1 class="article-hero-title">You+AI &rarr; &infin; Creativity = Future<sub>yours</sub></h1>
     <p class="article-hero-host">
         Georgetown University AI Academy &middot; Summer 2026 &middot; High School Session<br>
         Guest Speaker: Avril W. Hsu, Human-centered AI at Dell Chief AI Office
@@ -100,9 +100,38 @@
             <h2>What is creativity, <em>really</em>?</h2>
             <p>Placeholder content for section 4.</p>
         </section>
-        <section id="step-5" class="process-section">
-            <h2>Creativity isn't magic. It's a stack of skills.</h2>
-            <p>Placeholder content for section 5.</p>
+        <section id="step-5" class="process-section pinned-section">
+            <div class="pinned-content">
+                <div class="pinned-intro">
+                    <div class="title-two-column">
+                        <h2>Your part</h2>
+                        <span class="title-vs">vs.</span>
+                        <h2>AI's</h2>
+                    </div>
+                </div>
+                <div class="two-column-reveal">
+                    <div class="reveal-block" style="display:flex; flex-direction:column; gap:1rem;">
+                        <h3 class="reveal-subtitle">How You Approach Tasks and Life</h3>
+                        <img class="clickable-image" src="{{ url_for('static', filename='articles/left-1.png') }}" alt="Perceiving vs Judging">
+                        <p><strong>Perceiving (P):</strong> keep options open, figure it out as you go.<br>
+                        Thrives without structure. <span class="highlight-target">Tends to have trouble organizing ideas and narrowing down options.</span></p>
+                        <p><strong>Judging (J):</strong> plan first, then build.<br>
+                        Thrives with structure. <span class="highlight-target">Tends to stick with one plan and miss possibilities.</span></p>
+                    </div>
+                    <div class="reveal-block" data-highlight-on-reveal style="display:flex; flex-direction:column; gap:1rem;">
+                        <h3 class="reveal-subtitle">How AI Can Help</h3>
+                        <img class="clickable-image" src="{{ url_for('static', filename='articles/right-1.png') }}" alt="How AI Can Help">
+                        <p><strong>Perceiving (P):</strong> Use AI to help you organize and see structure, then commit.</p>
+                        <p><strong>Judging (J):</strong> Use AI to surface what you didn't consider and broaden your perspective, then choose.</p>
+                    </div>
+                    <p class="reveal-block">[ Left column item 2 ]</p>
+                    <p class="reveal-block">[ Right column item 2 ]</p>
+                    <p class="reveal-block">[ Left column item 3 ]</p>
+                    <p class="reveal-block">[ Right column item 3 ]</p>
+                    <p class="reveal-block">[ Left column item 4 ]</p>
+                    <p class="reveal-block">[ Right column item 4 ]</p>
+                </div>
+            </div>
         </section>
         <section id="step-6" class="process-section">
             <h2>Who's actually doing what when you work with AI?</h2>
@@ -121,6 +150,11 @@
 
 <div class="container" style="text-align:center; padding:3rem 1.5rem;">
     <p><a href="{{ url_for('substack', _anchor='keynotes') }}">&larr; Back to Keynotes</a></p>
+</div>
+
+<div class="image-modal" id="imageModal" aria-hidden="true">
+    <img class="image-modal-img" alt="">
+    <button class="image-modal-close" aria-label="Close image">&times;</button>
 </div>
 
 <script>
@@ -182,8 +216,10 @@
     pinnedSections.forEach((section) => {
         const sectionId = section.id;
         const revealBlocks = section.querySelectorAll('.reveal-block');
-        // Sections with reveal blocks pin longer (200%); empty ones pin briefly (100%)
-        const pinDuration = revealBlocks.length > 0 ? '+=200%' : '+=100%';
+        // Sections with reveal blocks pin proportional to block count (at least 200% if any blocks)
+        const pinDuration = revealBlocks.length > 0
+            ? `+=${Math.max(200, revealBlocks.length * 50)}%`
+            : '+=100%';
 
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -200,11 +236,24 @@
 
         if (revealBlocks.length > 0) {
             revealBlocks.forEach((block, i) => {
+                const position = 1.5 + i * 2.5;
                 tl.fromTo(block,
                     { opacity: 0, y: 20 },
                     { opacity: 1, y: 0, duration: 1 },
-                    1.5 + i * 2.5
+                    position
                 );
+
+                // If this block triggers a highlight elsewhere in the section, animate it in sync
+                if (block.hasAttribute('data-highlight-on-reveal')) {
+                    const highlights = section.querySelectorAll('.highlight-target');
+                    if (highlights.length) {
+                        tl.fromTo(highlights,
+                            { backgroundColor: 'rgba(250, 255, 0, 0)' },
+                            { backgroundColor: 'rgba(250, 255, 0, 0.5)', duration: 1 },
+                            position
+                        );
+                    }
+                }
             });
         }
     });
@@ -220,5 +269,46 @@
         threshold: 0.1
     });
     nonPinnedItems.forEach(item => itemObserver.observe(item));
+
+    // Image enlarge-on-click modal
+    const modal = document.getElementById('imageModal');
+    const modalImg = modal ? modal.querySelector('.image-modal-img') : null;
+    const modalClose = modal ? modal.querySelector('.image-modal-close') : null;
+
+    function openImageModal(src, alt) {
+        if (!modal || !modalImg) return;
+        modalImg.src = src;
+        modalImg.alt = alt || '';
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.25 });
+        gsap.fromTo(modalImg, { scale: 0.85 }, { scale: 1, duration: 0.35, ease: 'power2.out' });
+    }
+
+    function closeImageModal() {
+        if (!modal) return;
+        gsap.to(modal, {
+            opacity: 0,
+            duration: 0.2,
+            onComplete: () => {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                if (modalImg) modalImg.src = '';
+            }
+        });
+    }
+
+    document.querySelectorAll('.clickable-image').forEach(img => {
+        img.addEventListener('click', () => openImageModal(img.src, img.alt));
+    });
+
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target === modalClose) closeImageModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('is-open')) closeImageModal();
+        });
+    }
 </script>
 {% endblock %}
