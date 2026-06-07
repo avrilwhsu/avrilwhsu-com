@@ -68,6 +68,7 @@ h1, h2, .credentials-lede {
 
 .topnav a:hover {
     text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 .nav-links .social-icon {
@@ -1290,5 +1291,224 @@ h1, h2, .credentials-lede {
     .process-section {
         min-height: auto;
         padding: 3rem 0;
+    }
+}
+
+u {
+    text-underline-offset: 4px;
+}
+
+/* Quote callout variants ─────────────────────────────────── */
+
+.variant-label {
+    font-size: 0.875rem;
+    color: #888;
+    font-style: italic;
+    margin: 0 0 0.75rem;
+}
+
+/* Variant 1: Vertical bar quote */
+.quote-bar {
+    border-left: 4px solid #fbbf24;
+    padding: 0.25rem 0 0.25rem 1.5rem;
+    margin: 0;
+    max-width: 700px;
+}
+.quote-bar p {
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #222;
+    margin: 0;
+}
+.quote-bar cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-style: normal;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Variant 2: Box with big opening quote mark */
+.quote-box {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 3.5rem 2rem 2rem;
+    position: relative;
+    margin: 0;
+    max-width: 700px;
+}
+.quote-box::before {
+    content: "\201C";
+    position: absolute;
+    top: 0.5rem;
+    left: 1.25rem;
+    font-size: 5rem;
+    color: #d1d5db;
+    line-height: 1;
+    font-family: Georgia, "Times New Roman", serif;
+}
+.quote-box p {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: #222;
+    margin: 0;
+    font-style: italic;
+}
+.quote-box cite {
+    display: block;
+    margin-top: 1rem;
+    font-style: normal;
+    font-size: 1rem;
+    color: #555;
+}
+
+.quote-stack .quote-citation {
+    display: block;
+    margin: 0;
+    margin-right: 3rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-style: italic;
+    text-align: center;
+    max-width: none;
+}
+
+/* Variant 3: Speech bubble with tail */
+.quote-bubble {
+    background: #fef3c7;
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    position: relative;
+    margin: 0 0 1.25rem;
+    max-width: 700px;
+}
+.quote-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -1.5rem;
+    left: 3rem;
+    width: 0;
+    height: 0;
+    border-left: 1.25rem solid transparent;
+    border-right: 1.25rem solid transparent;
+    border-top: 1.5rem solid #fef3c7;
+}
+.quote-bubble p {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: #222;
+    margin: 0;
+}
+.quote-bubble cite {
+    display: block;
+    margin-top: 1rem;
+    font-style: normal;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Variant 4: Yellow highlight on key phrase */
+.quote-highlighted {
+    margin: 0;
+    max-width: 700px;
+}
+.quote-highlighted p {
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: #222;
+    margin: 0;
+}
+.quote-highlighted cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-style: normal;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Paired quote stack — first on left, second on right overlapping the first */
+.quote-stack {
+    position: relative;
+    width: 100%;
+    min-height: 56rem;
+}
+
+.quote-stack .quote-box {
+    width: 50%;
+    max-width: none;
+    margin: 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.quote-stack-first {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.quote-stack-first .reveal-subtitle {
+    margin-right: 3rem;
+}
+
+.quote-stack-second {
+    position: absolute;
+    top: 8rem;
+    right: 0;
+    transform: translateX(-3rem);
+    z-index: 2;
+    background: #f0f7fd;
+}
+
+.quote-stack-third {
+    position: absolute;
+    top: 22rem;
+    left: 0;
+    transform: translateX(2rem);
+    z-index: 3;
+    background: #f0fdf4;
+}
+
+.quote-stack-fourth {
+    position: absolute;
+    top: 30rem;
+    right: 0;
+    transform: translateX(-2rem);
+    z-index: 4;
+    background: #f9fafb;
+}
+
+.quote-stack-fifth {
+    position: absolute;
+    top: 40rem;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+.quote-stack-fifth .quote-box {
+    background: #f0f7fd;
+    transform: translateX(-1rem);
+}
+
+@media (max-width: 768px) {
+    .quote-stack {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .quote-stack .quote-box,
+    .quote-stack-first,
+    .quote-stack-second {
+        position: relative;
+        width: 100%;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
     }
 }
