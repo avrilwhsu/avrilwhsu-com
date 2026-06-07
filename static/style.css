@@ -1494,6 +1494,14 @@ u {
     transform: translateX(-1rem);
 }
 
+.quote-stack-next {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
 @media (max-width: 768px) {
     .quote-stack {
         min-height: auto;

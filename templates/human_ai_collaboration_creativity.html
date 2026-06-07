@@ -121,6 +121,104 @@
                         </blockquote>
                         <p class="quote-citation"><sup>1</sup> <a href="https://www.nytimes.com/2025/02/27/learning/what-students-are-saying-about-ai-and-the-future-of-work.html" target="_blank" rel="noopener">NYT, "What Students Are Saying About A.I."</a></p>
                     </div>
+                    <div class="reveal-block quote-stack-next" data-clears-quotes style="display:flex; flex-direction:column; gap:2.5rem;">
+                        <h3 class="reveal-subtitle">What AI actually is. Without the hype or the panic.</h3>
+                        <div class="stage-2-area" style="position: relative;">
+                            <div class="stage-2-set-a" style="display: flex; flex-direction: column; gap: 2.5rem;">
+                                <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start;">
+                                    <div style="display: flex; flex-direction: column; gap: 0.5rem; justify-self: start;">
+                                        <img src="{{ url_for('static', filename='articles/llm.png') }}" alt="LLM" style="width: 100%; max-width: 320px; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 0.9rem; color: #6b7280; text-align: center;">LLM, pretraining</p>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                        <p style="margin: 0;"><strong>What AI actually is:</strong> AI is trained on the entire public web.</p>
+                                        <p style="margin: 0;"><strong>Example:</strong> FineWeb open dataset contains ~12 trillion words across many disciplines (chemistry, psychology, sociology, history, and more).</p>
+                                        <p style="margin: 0;"><strong>AI processing time:</strong> Months.<br><strong>Human reading time:</strong> ~91,000 years (nonstop, no sleep, no breaks).</p>
+                                        <p style="margin: 0;">✅ Use AI for this. You can't do it yourself.</p>
+                                        <p style="margin: 0;">&#9888;&#65039; AI only responds with what's already been written, said, taught, and repeated.</p>
+                                    </div>
+                                </div>
+                                <div class="reveal-block" style="display:flex; flex-direction:column; gap:1.5rem; margin-top:0.73rem;">
+                                    <hr style="border:none; border-top:1px solid #9ca3af; margin:0;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start;">
+                                        <div style="display: flex; flex-direction: column; gap: 0.5rem; justify-self: start;">
+                                            <img src="{{ url_for('static', filename='articles/llm-post-training.png') }}" alt="LLM post-training" style="width: 100%; max-width: 320px; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                                            <p style="margin: 0; font-size: 0.9rem; color: #6b7280; text-align: center;">LLM, post-training</p>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                            <p style="margin: 0;"><strong>What AI actually is:</strong> AI is software. The human-like tone in its responses came from post-training with human feedback.</p>
+                                            <p style="margin: 0;"><strong>Example:</strong> When AI responds &ldquo;my honest recommendation&rdquo;&hellip;</p>
+                                            <p style="margin: 0;"><strong>Under the hood:</strong> AI learned this phrasing during training, when humans rated confident-sounding responses higher.</p>
+                                            <p style="margin: 0;">&#9888;&#65039; Tone &ne; sincerity</p>
+                                            <p style="margin: 0;">&#9888;&#65039; Response &ne; accuracy.</p>
+                                            <p style="margin: 0;">✅ Read AI's response as a substantive opinion, sometimes counter-argument to what you proposed, and see what it has to offer.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reveal-block stage-2-set-b" data-clears-stage-a style="position: absolute; top: 0; left: 0; width: 100%; display:flex; flex-direction:column; gap:2.5rem;">
+                                <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start;">
+                                    <div style="display: flex; flex-direction: column; gap: 0.5rem; justify-self: start;">
+                                        <img src="{{ url_for('static', filename='articles/llm-hallucination.png') }}" alt="LLM hallucination" style="width: 100%; max-width: 320px; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 0.9rem; color: #6b7280; text-align: center;">LLM &ldquo;Hallucination&rdquo;</p>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                        <p style="margin: 0;"><strong>What AI actually is:</strong> AI predicts based on mathematical calculations. It has no consciousness.</p>
+                                        <p style="margin: 0;"><strong>Example:</strong> When AI responds with incorrect answers to your prompts.</p>
+                                        <p style="margin: 0;"><strong>Under the hood:</strong> It predicts the statistically most plausible word, which isn't always the true one. Or it links to citations that don't actually exist.</p>
+                                        <p style="margin: 0;">&#9888;&#65039; AI's claims &amp; citations &ne; correctness</p>
+                                        <p style="margin: 0;">✅ Use AI to collect data fast. Use that time you saved to read and work out your brain.</p>
+                                    </div>
+                                </div>
+                                <div class="reveal-block" style="display:flex; flex-direction:column; gap:1.5rem; margin-top:0.73rem;">
+                                    <hr style="border:none; border-top:1px solid #9ca3af; margin:0;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start;">
+                                        <div style="display: flex; flex-direction: column; gap: 0.5rem; justify-self: start;">
+                                            <video src="{{ url_for('static', filename='articles/llm-different-answers.mp4') }}" autoplay loop muted playsinline style="width: 100%; max-width: 320px; aspect-ratio: 1 / 1; object-fit: cover; display: block;"></video>
+                                            <p style="margin: 0; font-size: 0.9rem; color: #6b7280; text-align: center;">LLM, sampling</p>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                            <p style="margin: 0;"><strong>What AI actually is:</strong> AI's answers vary. Same prompt, different answers every time.</p>
+                                            <p style="margin: 0;"><strong>Example:</strong> Ask AI the same brainstorming question twice in the same AI tool with the same model. You'll get different answers.</p>
+                                            <p style="margin: 0;"><strong>Under the hood:</strong> AI doesn't pick the &ldquo;best&rdquo; word, it rolls weighted dice from the most likely options.</p>
+                                            <p style="margin: 0;">&#9888;&#65039; The first answer is just one sample. Not &ldquo;the&rdquo; answer.</p>
+                                            <p style="margin: 0;">✅ Use AI to see different angles on the same question. The variability shows you the range of classic approaches before you build your own.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reveal-block stage-2-set-c" data-clears-stage-b style="position: absolute; top: 0; left: 0; width: 100%; display:flex; flex-direction:column; gap:2.5rem;">
+                                <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start;">
+                                    <div style="display: flex; flex-direction: column; gap: 0.5rem; justify-self: start;">
+                                        <img src="{{ url_for('static', filename='articles/ai-chat.png') }}" alt="AI chat" style="width: 100%; max-width: 320px; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 0.9rem; color: #6b7280; text-align: center;">LLM, statelessness</p>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                        <p style="margin: 0;"><strong>What AI actually is:</strong> AI chats don't share memory by default.</p>
+                                        <p style="margin: 0;"><strong>Example:</strong> You've been working on your essay in one chat for days. You can no longer tell if your structure makes sense. Open a fresh chat. Paste it in. Ask AI to analyze it.</p>
+                                        <p style="margin: 0;"><strong>Under the hood:</strong> The base AI model is &ldquo;stateless&rdquo;, it has no memory between chats. Without that memory, AI reads everything you give it as if for the first time.</p>
+                                        <p style="margin: 0;">&#9888;&#65039; New chat &ne; continued conversation</p>
+                                        <p style="margin: 0;">✅ Use AI to break the curse of knowledge. It sees what you can't unsee.</p>
+                                    </div>
+                                </div>
+                                <div class="reveal-block" style="display:flex; flex-direction:column; gap:1.5rem; margin-top:0.73rem;">
+                                    <hr style="border:none; border-top:1px solid #9ca3af; margin:0;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start;">
+                                        <div style="display: flex; flex-direction: column; gap: 0.5rem; justify-self: start;">
+                                            <img src="{{ url_for('static', filename='articles/llm-tool.png') }}" alt="LLM tool" style="width: 100%; max-width: 320px; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                                            <p style="margin: 0; font-size: 0.9rem; color: #6b7280; text-align: center;">LLM, knowledge boundary</p>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                            <p style="margin: 0;"><strong>What AI actually is:</strong> AI's knowledge ends somewhere. With or without web search, it works from what already exists.</p>
+                                            <p style="margin: 0;"><strong>Under the hood:</strong> AI lives in the past. Either its training cutoff, or whatever's already been published online. It can't access what hasn't been written yet.</p>
+                                            <p style="margin: 0;">&#9888;&#65039; Web search = gives AI access to the latest information and what humans have already written.</p>
+                                            <p style="margin: 0;">&#9888;&#65039; It cannot create in the true sense of creativity</p>
+                                            <p style="margin: 0;">✅ Top critical skill and human edge in the AI era: Creativity.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </section>
@@ -274,6 +372,39 @@
                         tl.fromTo(highlights,
                             { backgroundColor: 'rgba(250, 255, 0, 0)' },
                             { backgroundColor: 'rgba(250, 255, 0, 0.5)', duration: 1 },
+                            position
+                        );
+                    }
+                }
+
+                // If this block "clears" prior reveal blocks in the stack, slide them up and fade them out at the same time
+                if (block.hasAttribute('data-clears-quotes')) {
+                    const clearTargets = section.querySelectorAll('.quote-stack > .reveal-block:not([data-clears-quotes])');
+                    if (clearTargets.length) {
+                        tl.to(clearTargets,
+                            { opacity: 0, y: -60, duration: 1 },
+                            position
+                        );
+                    }
+                }
+
+                // Same pattern for stage-2 → stage-3 transition: fade out the set-a wrapper
+                if (block.hasAttribute('data-clears-stage-a')) {
+                    const clearTargets = section.querySelectorAll('.stage-2-set-a');
+                    if (clearTargets.length) {
+                        tl.to(clearTargets,
+                            { opacity: 0, y: -60, duration: 1 },
+                            position
+                        );
+                    }
+                }
+
+                // Same pattern for stage-3 → stage-4 transition: fade out the set-b wrapper
+                if (block.hasAttribute('data-clears-stage-b')) {
+                    const clearTargets = section.querySelectorAll('.stage-2-set-b');
+                    if (clearTargets.length) {
+                        tl.to(clearTargets,
+                            { opacity: 0, y: -60, duration: 1 },
                             position
                         );
                     }
