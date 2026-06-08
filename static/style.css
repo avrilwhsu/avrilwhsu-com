@@ -1121,7 +1121,7 @@ h1, h2, .credentials-lede {
 .pinned-content {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1.5rem;
     max-width: 1200px;
 }
 
@@ -1203,11 +1203,35 @@ h1, h2, .credentials-lede {
 
 .clickable-image {
     cursor: zoom-in;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .clickable-image:hover {
-    opacity: 0.9;
+    opacity: 0.95;
+    transform: scale(1.05);
+    box-shadow: 0 0 0 3px #111;
+}
+
+.myth-card {
+    cursor: pointer;
+}
+
+.myth-card .myth-text {
+    transition: background-color 0.2s ease;
+    padding: 0 0.25rem;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.myth-card:hover .clickable-image {
+    opacity: 0.95;
+    transform: scale(1.05);
+    box-shadow: 0 0 0 3px #111;
+}
+
+.myth-card:hover .myth-text {
+    background-color: rgba(250, 255, 0, 0.5);
 }
 
 .image-modal {
@@ -1226,14 +1250,33 @@ h1, h2, .credentials-lede {
     display: flex;
 }
 
-.image-modal-img {
+.image-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     max-width: 90vw;
     max-height: 90vh;
+}
+
+.image-modal-img {
+    max-width: 90vw;
+    max-height: 75vh;
     width: auto;
     height: auto;
     object-fit: contain;
     border-radius: 4px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    cursor: default;
+}
+
+.image-modal-caption {
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    font-size: 1.125rem;
+    line-height: 1.4;
+    max-width: 80vw;
     cursor: default;
 }
 

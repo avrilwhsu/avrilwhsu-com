@@ -41,7 +41,7 @@
             </a></li>
             <li><a href="#step-7" class="process-nav-item" data-step="7">
                 <span class="process-num">7</span>
-                <span class="process-label">One takeaway + start now</span>
+                <span class="process-label">Start now + resources</span>
             </a></li>
         </ol>
     </aside>
@@ -227,7 +227,136 @@
                 <div class="pinned-intro">
                     <h2>What is creativity, <em>really</em>?</h2>
                 </div>
-                <p class="reveal-block">Placeholder content for section 4.</p>
+                <div class="section-4-area" style="position: relative;">
+                <div class="reveal-block section-4-set-a" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; flex-direction: column; gap: 0.25rem; align-items: center;">
+                        <h3 class="reveal-subtitle">The myth check</h3>
+                        <p style="margin: 0; text-align: center; font-style: italic;">How many of these do you secretly believe?</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                        <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <img class="clickable-image" src="{{ url_for('static', filename='articles/myth-1.png') }}" alt="Myth 1" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                            <p style="margin: 0; font-size: 1.1rem; line-height: 1.35; text-align: center;"><span class="myth-text">Myth 1. Being creative means coming up with something nobody's ever done before</span></p>
+                        </div>
+                        <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <img class="clickable-image" src="{{ url_for('static', filename='articles/myth-2.png') }}" alt="Myth 2" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                            <p style="margin: 0; font-size: 1.1rem; line-height: 1.35; text-align: center;"><span class="myth-text">Myth 2. Being creative doesn't pay the bills</span></p>
+                        </div>
+                        <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <img class="clickable-image" src="{{ url_for('static', filename='articles/myth-3.png') }}" alt="Myth 3" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                            <p style="margin: 0; font-size: 1.1rem; line-height: 1.35; text-align: center;"><span class="myth-text">Myth 3. Creativity is only for artsy people. (drawing, music, writing)</span></p>
+                        </div>
+                        <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <img class="clickable-image" src="{{ url_for('static', filename='articles/myth-4.png') }}" alt="Myth 4" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                            <p style="margin: 0; font-size: 1.1rem; line-height: 1.35; text-align: center;"><span class="myth-text">Myth 4. Creative ideas come and go; you can't really control them</span></p>
+                        </div>
+                        <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <img class="clickable-image" src="{{ url_for('static', filename='articles/myth-5.png') }}" alt="Myth 5" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                            <p style="margin: 0; font-size: 1.1rem; line-height: 1.35; text-align: center;"><span class="myth-text">Myth 5. You need a certain personality to be creative (eccentric, rebellious, weird), and either you're born with it or you're not.</span></p>
+                        </div>
+                        <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <img class="clickable-image" src="{{ url_for('static', filename='articles/myth-6.png') }}" alt="Myth 6" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block;">
+                            <p style="margin: 0; font-size: 1.1rem; line-height: 1.35; text-align: center;"><span class="myth-text">Myth 6. Creativity is letting your mind wander wherever it wants</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-block" data-clears-section-4-a style="position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 3.5rem 2.5fr 3.5rem 1.5fr; column-gap: 0.75rem;">
+                        <h3 class="reveal-subtitle" style="grid-column: 3; margin: 0;">The real definition</h3>
+                    </div>
+                    <div class="def-area" style="position: relative;">
+                        <div class="def-set-a" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                            <div style="display: grid; grid-template-columns: 1fr 3.5rem 2.5fr 3.5rem 1.5fr; grid-template-rows: auto 0.5rem auto; column-gap: 0.75rem; align-items: center;">
+                                <span style="grid-row: 1; grid-column: 1; font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; justify-self: start;">Creativity</span>
+                                <span style="grid-row: 1; grid-column: 2; font-size: 3rem; font-weight: 700;">=</span>
+                                <div style="grid-row: 1; grid-column: 3; border-bottom: 2px solid #111; padding: 0.5rem 0.75rem; text-align: center; align-self: stretch; display: flex; align-items: center; justify-content: center;">seeing what everyone else has seen,<br>and thinking what no one else has thought</div>
+                                <span style="grid-row: 1; grid-column: 4; font-size: 3rem; font-weight: 700;">+</span>
+                                <div style="grid-row: 1; grid-column: 5; border-bottom: 2px solid #111; padding: 0.5rem 0.75rem; text-align: center; align-self: stretch; display: flex; align-items: center; justify-content: center;">usefulness/helpfulness</div>
+                                <p style="grid-row: 3; grid-column: 3; margin: 0; text-align: center;"><span class="highlight">ingredient 1</span></p>
+                                <p style="grid-row: 3; grid-column: 5; margin: 0; text-align: center;"><span class="highlight">ingredient 2</span></p>
+                            </div>
+                            <div class="reveal-block" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
+                                <hr style="border: none; border-top: 1px solid #9ca3af; margin: 0;">
+                                <p style="margin: 0;"><strong>Example: Music Industry.</strong> Daft Punk's &ldquo;One More Time&rdquo; famously sampled and reworked elements of Eddie Johns' &ldquo;More Spell on You.&rdquo;</p>
+                                <div style="display: flex; justify-content: center; width: 100%;">
+                                    <div class="reddit-embed-placeholder" data-post-url="https://www.reddit.com/r/Damnthatsinteresting/comments/wtm2tt/how_daft_punk_made_one_more_time/" data-embed-height="500" style="width: 100%; max-width: 800px; height: 500px; background: #f3f4f6; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; cursor: pointer; transition: background 0.2s ease;">
+                                        <div style="width: 72px; height: 72px; background: #ff4500; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.75rem; padding-left: 6px;">&#9654;</div>
+                                        <p style="margin: 0; font-size: 1.125rem; color: #1f2937; font-weight: 600;">How Daft Punk made One More Time</p>
+                                        <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">Click to load Reddit video</p>
+                                    </div>
+                                </div>
+                                <p style="margin: 0 auto; max-width: 800px; font-size: 1.125rem; line-height: 1.35; text-align: center;">Spotify Streams (June 2026)<br>Eddie Johns, <em>More Spell on You</em>: <strong>10.2M</strong> streams<br>Daft Punk, <em>One More Time</em>: <strong>913.9M</strong> streams</p>
+                            </div>
+                        </div>
+                        <div class="reveal-block def-set-b" data-clears-def-a style="position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+                            <div style="display: grid; grid-template-columns: 1fr 3.5rem 2.5fr 3.5rem 1.5fr; column-gap: 0.75rem; align-items: center;">
+                                <span style="grid-column: 1; font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; justify-self: start;">Creativity</span>
+                                <span style="grid-column: 2; font-size: 3rem; font-weight: 700;">=</span>
+                                <p style="grid-column: 3 / 6; margin: 0; font-size: 2rem; padding: 0.5rem 0.75rem; text-align: center; border-bottom: 2px solid #111;">The Same Skill, Different Shapes <span class="highlight">Throughout Your Life</span></p>
+                            </div>
+                            <div class="reveal-block" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
+                                <hr style="border: none; border-top: 1px solid #9ca3af; margin: 0;">
+                                <p style="margin: 0;"><strong>Example:</strong></p>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                                    <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+                                        <img class="clickable-image" src="{{ url_for('static', filename='articles/school-creativity.png') }}" alt="School creativity" style="width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 1.125rem; line-height: 1.35; text-align: center;"><span class="myth-text">School</span></p>
+                                    </div>
+                                    <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+                                        <img class="clickable-image" src="{{ url_for('static', filename='articles/work-creativity.png') }}" alt="Work creativity" style="width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 1.125rem; line-height: 1.35; text-align: center;"><span class="myth-text">Early Career</span></p>
+                                    </div>
+                                    <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+                                        <img class="clickable-image" src="{{ url_for('static', filename='articles/seasoned-creativity-1.png') }}" alt="Seasoned creativity" style="width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 1.125rem; line-height: 1.35; text-align: center;"><span class="myth-text">Seasoned Career: Navigating Disruption</span></p>
+                                    </div>
+                                    <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+                                        <img class="clickable-image" src="{{ url_for('static', filename='articles/seasoned-creativity-2.png') }}" alt="Seasoned creativity 2" style="width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 1.125rem; line-height: 1.35; text-align: center;"><span class="myth-text">Seasoned Career: Stretching Beyond Expertise</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-block def-set-c" data-clears-def-b style="position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="display: grid; grid-template-columns: 1fr 3.5rem 2fr 3.5rem 2fr; column-gap: 0.75rem; align-items: center;">
+                                <span style="grid-column: 1; font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; justify-self: start;">Creativity</span>
+                                <span style="grid-column: 2; font-size: 3rem; font-weight: 700;">=</span>
+                                <p style="grid-column: 3 / 6; margin: 0; font-size: 1.5rem; padding: 0.5rem 0.75rem; text-align: center; border-bottom: 2px solid #111;">Connecting <span class="highlight">seemingly unrelated things</span> in unexpected and useful ways.</p>
+                            </div>
+                            <div class="reveal-block" style="display: grid; grid-template-columns: 1fr 3.5rem 2fr 3.5rem 2fr; grid-template-rows: auto 0.5rem auto; column-gap: 0.75rem; align-items: center;">
+                                <span style="grid-row: 1; grid-column: 2; font-size: 3rem; font-weight: 700;">=</span>
+                                <div style="grid-row: 1; grid-column: 3; font-size: 1.5rem; border-bottom: 2px solid #111; padding: 0.5rem 0.75rem; text-align: center; align-self: stretch; display: flex; align-items: center; justify-content: center;">Crystallized Intelligence</div>
+                                <span style="grid-row: 1; grid-column: 4; font-size: 3rem; font-weight: 700;">+</span>
+                                <div style="grid-row: 1; grid-column: 5; font-size: 1.5rem; border-bottom: 2px solid #111; padding: 0.5rem 0.75rem; text-align: center; align-self: stretch; display: flex; align-items: center; justify-content: center;">Fluid Intelligence</div>
+                                <p style="grid-row: 3; grid-column: 3; margin: 0; text-align: center;"><span class="highlight">ingredient 1</span></p>
+                                <p style="grid-row: 3; grid-column: 5; margin: 0; text-align: center;"><span class="highlight">ingredient 2</span></p>
+                            </div>
+                            <div class="reveal-block" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
+                                <hr style="border: none; border-top: 1px solid #9ca3af; margin: 0;">
+                                <p style="margin: 0;"><strong>Example:</strong></p>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 1024px; margin: 0 auto; width: 100%;">
+                                    <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+                                        <img class="clickable-image" src="{{ url_for('static', filename='articles/crystalized-intelligence.png') }}" alt="Crystallized Intelligence" style="width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 1.125rem; line-height: 1.35; text-align: center;"><span class="myth-text">Crystallized Intelligence</span></p>
+                                    </div>
+                                    <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+                                        <img class="clickable-image" src="{{ url_for('static', filename='articles/fluid-intelligence.png') }}" alt="Fluid Intelligence" style="width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 1.125rem; line-height: 1.35; text-align: center;"><span class="myth-text">Fluid Intelligence</span></p>
+                                    </div>
+                                    <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+                                        <img class="clickable-image" src="{{ url_for('static', filename='articles/crystalized-intelligence-ai.png') }}" alt="Crystallized Intelligence AI" style="width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 1.125rem; line-height: 1.35; text-align: center;"><span class="myth-text">AI Strength: Knowledge Access<br>Human Edge: Unique, Bizarre Dots</span></p>
+                                    </div>
+                                    <div class="myth-card" style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+                                        <img class="clickable-image" src="{{ url_for('static', filename='articles/fluid-intelligence-ai.png') }}" alt="Fluid Intelligence AI" style="width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block;">
+                                        <p style="margin: 0; font-size: 1.125rem; line-height: 1.35; text-align: center;"><span class="myth-text">AI Strength: Pattern Recognition in Knowledge<br>Human Edge: Discovering Patterns Not Yet Found</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </section>
         <section id="step-5" class="process-section pinned-section">
@@ -239,37 +368,88 @@
                         <h2>AI's</h2>
                     </div>
                 </div>
-                <div class="two-column-reveal">
-                    <div class="reveal-block" style="display:flex; flex-direction:column; gap:1rem;">
-                        <h3 class="reveal-subtitle">How You Approach Tasks and Life</h3>
-                        <img class="clickable-image" src="{{ url_for('static', filename='articles/left-1.png') }}" alt="Perceiving vs Judging">
-                        <p><strong>Perceiving (P):</strong> keep options open, figure it out as you go.<br>
-                        Thrives without structure. <span class="highlight-target">Tends to have trouble organizing ideas and narrowing down options.</span></p>
-                        <p><strong>Judging (J):</strong> plan first, then build.<br>
-                        Thrives with structure. <span class="highlight-target">Tends to stick with one plan and miss possibilities.</span></p>
+                <div class="two-column-reveal" style="margin-top: 5rem;">
+                    <div style="grid-column: 1 / -1; position: relative;">
+                        <div class="section-5-set-a" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem;">
+                            <div class="reveal-block" style="display:flex; flex-direction:column; gap:1rem;">
+                                <h3 class="reveal-subtitle">How You Approach Tasks and Life</h3>
+                                <img class="clickable-image" src="{{ url_for('static', filename='articles/personality-p-j.png') }}" alt="Perceiving vs Judging">
+                                <p><strong>Perceiving (P):</strong> keep options open, figure it out as you go.<br>
+                                Thrives without structure. <span class="highlight-target">Tends to have trouble organizing ideas and narrowing down options.</span></p>
+                                <p><strong>Judging (J):</strong> plan first, then build.<br>
+                                Thrives with structure. <span class="highlight-target">Tends to stick with one plan and miss possibilities.</span></p>
+                            </div>
+                            <div class="reveal-block" data-highlight-on-reveal style="display:flex; flex-direction:column; gap:1rem;">
+                                <h3 class="reveal-subtitle">How AI Can Help</h3>
+                                <img class="clickable-image" src="{{ url_for('static', filename='articles/ai-prompt-p-j.png') }}" alt="How AI Can Help">
+                                <p><strong>Perceiving (P):</strong> Use AI to help you organize and see structure, then commit.</p>
+                                <p><strong>Judging (J):</strong> Use AI to surface what you didn't consider and broaden your perspective, then choose.</p>
+                            </div>
+                        </div>
+                        <div class="section-5-set-b" style="position: absolute; top: 0; left: 0; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem;">
+                            <div class="reveal-block" data-clears-section-5-row-1 style="display:flex; flex-direction:column; gap:1rem;">
+                                <h3 class="reveal-subtitle">How You Take In Information</h3>
+                                <img class="clickable-image" src="{{ url_for('static', filename='articles/personality-n-s.png') }}" alt="Intuition vs Sensing">
+                                <p><strong>Intuition (N):</strong> Sees patterns, reads between the lines.<br>
+                                Thrives in ambiguity and big-picture thinking. <span class="highlight-target">Tends to overlook concrete details and what's right in front of you.</span></p>
+                                <p><strong>Sensing (S):</strong> Focuses and dives into details, facts.<br>
+                                Thrives with specifics and real evidence. <span class="highlight-target">Tends to miss patterns and underestimate &ldquo;what could be&rdquo;.</span></p>
+                            </div>
+                            <div class="reveal-block" data-highlight-on-reveal style="display:flex; flex-direction:column; gap:1rem;">
+                                <h3 class="reveal-subtitle">How AI Can Help</h3>
+                                <img class="clickable-image" src="{{ url_for('static', filename='articles/ai-prompt-n-s.png') }}" alt="How AI Can Help">
+                                <p><strong>Intuition (N):</strong> Use AI to ground you in real structure and guide you to read details in depth.</p>
+                                <p><strong>Sensing (S):</strong> Use AI to surface what your details add up to and find the patterns you're missing.</p>
+                            </div>
+                        </div>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem;">
+                            <div class="reveal-block" data-clears-section-5-row-2 style="display:flex; flex-direction:column; gap:1rem;">
+                                <h3 class="reveal-subtitle">Collect &ldquo;Dots&rdquo;. The Hard Way.</h3>
+                                <img class="clickable-image" src="{{ url_for('static', filename='articles/collect-dots-hard-way.png') }}" alt="Collect Dots the Hard Way">
+                                <p>✅ You read first.</p>
+                                <p>❌ Don't ask AI to summarize so you can skip reading.</p>
+                                <p>✅ Expand your variety of experiences and grow your taste.</p>
+                            </div>
+                            <div class="reveal-block" style="display:flex; flex-direction:column; gap:1rem;">
+                                <h3 class="reveal-subtitle">Reach Beyond Your Limits. Instantly.</h3>
+                                <img class="clickable-image" src="{{ url_for('static', filename='articles/t-shape.png') }}" alt="T-shape">
+                                <p>✅ Use AI to cross fields, surface analogies, find connections.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="reveal-block" data-highlight-on-reveal style="display:flex; flex-direction:column; gap:1rem;">
-                        <h3 class="reveal-subtitle">How AI Can Help</h3>
-                        <img class="clickable-image" src="{{ url_for('static', filename='articles/right-1.png') }}" alt="How AI Can Help">
-                        <p><strong>Perceiving (P):</strong> Use AI to help you organize and see structure, then commit.</p>
-                        <p><strong>Judging (J):</strong> Use AI to surface what you didn't consider and broaden your perspective, then choose.</p>
-                    </div>
-                    <p class="reveal-block">[ Left column item 2 ]</p>
-                    <p class="reveal-block">[ Right column item 2 ]</p>
-                    <p class="reveal-block">[ Left column item 3 ]</p>
-                    <p class="reveal-block">[ Right column item 3 ]</p>
-                    <p class="reveal-block">[ Left column item 4 ]</p>
-                    <p class="reveal-block">[ Right column item 4 ]</p>
                 </div>
             </div>
         </section>
-        <section id="step-6" class="process-section">
-            <h2>Who's actually doing what when you work with AI?</h2>
-            <p>Placeholder content for section 6.</p>
+        <section id="step-6" class="process-section pinned-section">
+            <div class="pinned-content">
+                <div class="pinned-intro">
+                    <h2>Any questions?</h2>
+                </div>
+            </div>
         </section>
-        <section id="step-7" class="process-section">
-            <h2>The one thing &mdash; and what to do <em>now</em></h2>
-            <p>Placeholder content for section 7.</p>
+        <section id="step-7" class="process-section pinned-section">
+            <div class="pinned-content">
+                <div class="pinned-intro">
+                    <h2>What to do <em>now</em></h2>
+                </div>
+                <div class="reveal-block" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <h3 class="reveal-subtitle">Resources</h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto;">
+                        <a href="https://www.amazon.com/Excellent-Sheep-Miseducation-American-Meaningful/dp/1476702721/" target="_blank" rel="noopener" style="display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: inherit; align-items: center;">
+                            <img src="{{ url_for('static', filename='articles/book-sheep.jpg') }}" alt="Excellent Sheep by William Deresiewicz" style="width: 100%; max-width: 280px; height: auto; display: block; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                            <p style="margin: 0; font-size: 0.95rem; line-height: 1.35; text-align: center;"><strong>Excellent Sheep</strong><br>William Deresiewicz</p>
+                        </a>
+                        <a href="https://www.amazon.com/Third-Door-Uncover-Successful-Launched/dp/0804136661/" target="_blank" rel="noopener" style="display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: inherit; align-items: center;">
+                            <img src="{{ url_for('static', filename='articles/book-door.jpg') }}" alt="The Third Door by Alex Banayan" style="width: 100%; max-width: 280px; height: auto; display: block; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                            <p style="margin: 0; font-size: 0.95rem; line-height: 1.35; text-align: center;"><strong>The Third Door</strong><br>Alex Banayan</p>
+                        </a>
+                        <a href="https://www.amazon.com/Seeing-What-Others-Dont-Remarkable/dp/1610393821/" target="_blank" rel="noopener" style="display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: inherit; align-items: center;">
+                            <img src="{{ url_for('static', filename='articles/book-seeing.jpg') }}" alt="Seeing What Others Don't by Gary Klein" style="width: 100%; max-width: 280px; height: auto; display: block; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                            <p style="margin: 0; font-size: 0.95rem; line-height: 1.35; text-align: center;"><strong>Seeing What Others Don't</strong><br>Gary Klein</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </div>
@@ -279,7 +459,10 @@
 </div>
 
 <div class="image-modal" id="imageModal" aria-hidden="true">
-    <img class="image-modal-img" alt="">
+    <div class="image-modal-content">
+        <img class="image-modal-img" alt="">
+        <p class="image-modal-caption"></p>
+    </div>
     <button class="image-modal-close" aria-label="Close image">&times;</button>
 </div>
 
@@ -364,14 +547,15 @@
             revealBlocks.forEach((block, i) => {
                 const position = 1.5 + i * 2.5;
                 tl.fromTo(block,
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 1 },
+                    { autoAlpha: 0, y: 20 },
+                    { autoAlpha: 1, y: 0, duration: 1 },
                     position
                 );
 
                 // If this block triggers a highlight elsewhere in the section, animate it in sync
                 if (block.hasAttribute('data-highlight-on-reveal')) {
-                    const highlights = section.querySelectorAll('.highlight-target');
+                    const scope = block.parentElement || section;
+                    const highlights = scope.querySelectorAll('.highlight-target');
                     if (highlights.length) {
                         tl.fromTo(highlights,
                             { backgroundColor: 'rgba(250, 255, 0, 0)' },
@@ -386,7 +570,7 @@
                     const clearTargets = section.querySelectorAll('.quote-stack > .reveal-block:not([data-clears-quotes])');
                     if (clearTargets.length) {
                         tl.to(clearTargets,
-                            { opacity: 0, y: -60, duration: 1 },
+                            { autoAlpha: 0, y: -60, duration: 1 },
                             position
                         );
                     }
@@ -397,7 +581,7 @@
                     const clearTargets = section.querySelectorAll('.stage-2-set-a');
                     if (clearTargets.length) {
                         tl.to(clearTargets,
-                            { opacity: 0, y: -60, duration: 1 },
+                            { autoAlpha: 0, y: -60, duration: 1 },
                             position
                         );
                     }
@@ -408,7 +592,62 @@
                     const clearTargets = section.querySelectorAll('.stage-2-set-b');
                     if (clearTargets.length) {
                         tl.to(clearTargets,
-                            { opacity: 0, y: -60, duration: 1 },
+                            { autoAlpha: 0, y: -60, duration: 1 },
+                            position
+                        );
+                    }
+                }
+
+                // Section 4 myth grid → real definition transition
+                if (block.hasAttribute('data-clears-section-4-a')) {
+                    const clearTargets = section.querySelectorAll('.section-4-set-a');
+                    if (clearTargets.length) {
+                        tl.to(clearTargets,
+                            { autoAlpha: 0, y: -60, duration: 1 },
+                            position
+                        );
+                    }
+                }
+
+                // Section 4 definition 1 → definition 2 transition (subtitle "The real definition" stays)
+                if (block.hasAttribute('data-clears-def-a')) {
+                    const clearTargets = section.querySelectorAll('.def-set-a');
+                    if (clearTargets.length) {
+                        tl.to(clearTargets,
+                            { autoAlpha: 0, y: -60, duration: 1 },
+                            position
+                        );
+                    }
+                }
+
+                // Section 4 definition 2 → definition 3 transition (subtitle "The real definition" stays)
+                if (block.hasAttribute('data-clears-def-b')) {
+                    const clearTargets = section.querySelectorAll('.def-set-b');
+                    if (clearTargets.length) {
+                        tl.to(clearTargets,
+                            { autoAlpha: 0, y: -60, duration: 1 },
+                            position
+                        );
+                    }
+                }
+
+                // Section 5 row 1 → row 2 transition
+                if (block.hasAttribute('data-clears-section-5-row-1')) {
+                    const clearTargets = section.querySelectorAll('.section-5-set-a');
+                    if (clearTargets.length) {
+                        tl.to(clearTargets,
+                            { autoAlpha: 0, y: -60, duration: 1 },
+                            position
+                        );
+                    }
+                }
+
+                // Section 5 row 2 → row 3 transition
+                if (block.hasAttribute('data-clears-section-5-row-2')) {
+                    const clearTargets = section.querySelectorAll('.section-5-set-b');
+                    if (clearTargets.length) {
+                        tl.to(clearTargets,
+                            { autoAlpha: 0, y: -60, duration: 1 },
                             position
                         );
                     }
@@ -437,10 +676,16 @@
     const modalImg = modal ? modal.querySelector('.image-modal-img') : null;
     const modalClose = modal ? modal.querySelector('.image-modal-close') : null;
 
-    function openImageModal(src, alt) {
+    const modalCaption = modal ? modal.querySelector('.image-modal-caption') : null;
+
+    function openImageModal(src, alt, caption) {
         if (!modal || !modalImg) return;
         modalImg.src = src;
         modalImg.alt = alt || '';
+        if (modalCaption) {
+            modalCaption.innerHTML = caption || '';
+            modalCaption.style.display = caption ? 'block' : 'none';
+        }
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.25 });
@@ -461,7 +706,15 @@
     }
 
     document.querySelectorAll('.clickable-image').forEach(img => {
-        img.addEventListener('click', () => openImageModal(img.src, img.alt));
+        img.addEventListener('click', () => {
+            const parent = img.parentElement;
+            let caption = '';
+            if (parent) {
+                const paragraphs = Array.from(parent.querySelectorAll('p'));
+                caption = paragraphs.map(p => p.innerHTML.trim()).filter(Boolean).join('<br><br>');
+            }
+            openImageModal(img.src, img.alt, caption);
+        });
     });
 
     if (modal) {
@@ -472,5 +725,34 @@
             if (e.key === 'Escape' && modal.classList.contains('is-open')) closeImageModal();
         });
     }
+
+    // Click-to-load Reddit embeds (so the video doesn't autoplay when the section reveals)
+    document.querySelectorAll('.reddit-embed-placeholder').forEach(placeholder => {
+        placeholder.addEventListener('click', () => {
+            const postUrl = placeholder.dataset.postUrl;
+            const embedHeight = placeholder.dataset.embedHeight || '500';
+
+            const blockquote = document.createElement('blockquote');
+            blockquote.className = 'reddit-embed-bq';
+            blockquote.setAttribute('data-embed-height', embedHeight);
+            blockquote.style.height = embedHeight + 'px';
+            const link = document.createElement('a');
+            link.href = postUrl;
+            link.textContent = 'View on Reddit';
+            blockquote.appendChild(link);
+
+            placeholder.replaceWith(blockquote);
+
+            if (!document.querySelector('script[src*="embed.reddit.com/widgets.js"]')) {
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://embed.reddit.com/widgets.js';
+                script.charset = 'UTF-8';
+                document.body.appendChild(script);
+            } else if (window.rembeddit && typeof window.rembeddit.init === 'function') {
+                window.rembeddit.init();
+            }
+        });
+    });
 </script>
 {% endblock %}
