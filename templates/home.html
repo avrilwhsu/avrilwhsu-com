@@ -5,12 +5,11 @@
 {% block content %}
 <section class="hero-side">
     <div class="hero-side-content">
-        <h1>Build yourself into<br class="break-desktop"><span class="highlight">AI roles as real operators.</span><br class="break-desktop"><span style="display:block; height:1em;" aria-hidden="true"></span><span style="display:block; text-align:center; font-style:italic; font-size:0.85em;">"Not being seen as just the <span class="rotator" style="color:#bbb; font-style:italic;"><span id="rotator" class="rotator-text">roadmap PM</span></span> anymore."</span></h1>
-        <p>Hi, I'm Avril! Silicon Valley-based AI coach. I help ambitious professionals and teams break into AI-era work.</p>
-        <p>In our work together, I'm part coach, part guide, part advisor. The path is specific to you, the career you built before AI, the one you want now.</p>
-        <p>No generic curriculum. No turning you into someone you're not. We build on your existing strengths and use AI to amplify them where it fits.</p>
+        <h1>Build yourself into<br class="break-desktop"><span class="highlight">AI roles as real operators.</span><!-- hidden for now, may restore later:<br class="break-desktop"><span style="display:block; height:1em;" aria-hidden="true"></span><span style="display:block; text-align:center; font-style:italic; font-size:0.85em;">"Not being seen as just the <span class="rotator" style="color:#bbb; font-style:italic;"><span id="rotator" class="rotator-text">roadmap PM</span></span> anymore."</span>--></h1>
+        <p>Hi, I'm Avril. I'm a Silicon Valley coach who helps ambitious professionals break into AI-era work.</p>
+        <p>Part guide, part teacher, I'll show you how to build on the career you already have and get you where you want to go.</p>
         <div style="display:flex; justify-content:center; margin-top:0.5rem;">
-            <a class="btn btn-primary" href="{{ url_for('connect') }}">I'm interested</a>
+            <a class="btn btn-primary" href="https://calendly.com/avrilwhsu/quick-chat-complimentary" target="_blank" rel="noopener" onclick="if(window.Calendly){Calendly.initPopupWidget({url:'https://calendly.com/avrilwhsu/quick-chat-complimentary'});return false;}">I'm interested</a>
         </div>
     </div>
     <div class="hero-side-image">
@@ -20,7 +19,7 @@
 
 <section class="hero-strip">
     <div class="trusted-by">
-        <p class="trusted-by-title">Trusted by professionals at</p>
+        <p class="trusted-by-title">Trusted by professionals, business owners, and institutions at</p>
         <div class="trusted-by-logos">
             <div class="logos-track">
                 <img src="{{ url_for('static', filename='logos/meta-gray.png') }}" alt="Meta">
@@ -43,45 +42,33 @@
                 <img src="{{ url_for('static', filename='logos/georgetown-gray.png') }}" alt="" aria-hidden="true">
             </div>
         </div>
-        <div class="trusted-by-extras">
-            <p>+ Founders and founding teams building AI-first products</p>
-            <p>+ Business owners using AI as their company's advantage</p>
-        </div>
     </div>
 </section>
 
 <section class="offerings">
-    <p class="credentials-lede">Silicon Valley-based AI Coach<br><span class="highlight">Front-Row Practice, Grounded in Human Science</span></p>
+    <p class="credentials-lede">From the front row of AI to your next move.<br>Not a generic coach. Teacher, trainer, grounded.</p>
 
     <div class="credentials-body">
         <div class="credentials-block">
-            <h3>What I keep hearing: the AI pain</h3>
-            <p>You've seen the headlines. AI isn't hype anymore. It's settling into the economy, and you want to figure out how to get into it before the window narrows. So you've read the articles, watched the YouTube explainers, maybe taken a course or two. And somehow you're no closer to being in than when you started. The field that was an infant two years ago is already a teenager. Chasing this exponential speed feels exhausting, and the chase doesn't quite add up to a position you'd actually want to be in.</p>
-        </div>
-
-        <div class="credentials-block">
-            <h3>What real AI-era work asks of you</h3>
-            <p>Real AI-era work isn't about knowing the AI keywords that get you surfaced by algorithms, or using AI tools, or shipping AI features in your product. AI is a general-purpose technology, on the level of electricity or the internet. A shift that big doesn't just require new tools. It requires reinventing how you think, work, and make decisions.</p>
-            <p>When you use AI without grounding in human science, what you actually have is a system predicting the next likely word. It feels like progress. Yet, two costs often go unnoticed here. One is what gets built: fast-food AI. Beautiful junk that feels like work but doesn't compound. The other is what gets lost: your own cognitive instincts that made you good at the work in the first place and can&rsquo;t be engineered (so far).</p>
-        </div>
-
-        <div class="credentials-block">
-            <h3>How I help you: AI that compounds what only you can do</h3>
-            <p>When you put the prediction engine next to your human mind, the cognitive load redistributes. AI handles the cross-subject pattern-scanning that no single lifetime could cover by hand. Your bandwidth opens up for non-AI-able work*: developing original ideas, applying the fingerprint expertise you've accumulated through thousands of small, atypical decisions you've made daily, for years. Here's what that looks like in practice:</p>
+            <p>The headlines say it all. AI isn't hype anymore, it's settling into the economy, and you want to figure out how to get into it before the window narrows.</p>
+            <p>You've read the articles, watched the YouTube explainers, even taken a course or two but, somehow, you're no closer to being <em>in</em> than when you started.</p>
+            <p>The field that was an infant two years ago is already a teenager and chasing this exponential speed feels exhausting, especially if the chase isn't getting you anywhere.</p>
+            <p>But the opportunity isn't learning everything about AI. <span class="highlight">It's carving out the space only you can own in an AI-shaped world.</span> The people who thrive there won't be the ones who know the right prompts or the best tools. They'll be the ones who combine AI with what they've spent years building: their expertise, judgment, and unique perspective.</p>
+            <p>Together, we identify the capabilities, experiences, and insights that make you valuable, then use AI to amplify them. The goal isn't to become an AI expert. It's to become the new you: your human judgment and perspective plus AI working as one. Sharper calls, made faster, with craft that's unmistakably yours. That's what sets you apart in the AI-era economy.</p>
+            <p>Here are just some examples of how I have helped:</p>
             <ul class="credentials-examples">
-                <li>A PM who can't code now is the AI PM who ships working prototypes that convey product vision before burning dev hours. Those coded prototypes double as behavioral specs for engineering, faster than any PRD.</li>
-                <li>A founder building an AI business now finds the niche only they can occupy in their industry. That focus compounds into a new market category, with customers who came specifically for what only they could build.</li>
-                <li>A designer who wasn't sure what to do with their legal background now combines the two with AI in the mix. The hybrid that once felt like a wandering path now compounds into the kind of work companies pay premium for and others can't quite copy.</li>
+                <li><strong>A product manager who can't code becomes the AI PM</strong>, shipping working prototypes whose strategy context doubles as the spec, so engineering builds the right thing from day one instead of burning tokens on AI-generated code that misses the point.</li>
+                <li><strong>A founder building an AI business who finds the niche only they can occupy</strong>, while competitors crowd into the same obvious ideas and get copied overnight.</li>
+                <li><strong>A product designer who fluidly blends the manual and the AI into premium craft</strong>, the kind that keeps customers glued, while the rest of the market drowns in beautiful, forgettable AI-generated UI.</li>
+                <li><strong>A team once labeled non-technical that now pairs deep expertise with AI to ship real strategy</strong>, not slop, moving together at the velocity the AI market demands.</li>
             </ul>
         </div>
 
         <div class="credentials-block">
-            <p>If you're thinking about a move, let's talk!</p>
-        </div>
-
-        <div class="verbatims-cta" style="flex-direction:column; align-items:center; gap:0.5rem;">
-            <a class="btn btn-primary" href="{{ url_for('connect') }}">Schedule a quick chat</a>
-            <p style="margin:0; font-size:0.85rem; color:#888; font-style:italic;">Complimentary — your story, your goals, let's see if we're the right fit.</p>
+            <p style="margin:0;">Thinking about a move? Book a free call and let's see if we're the right fit.</p>
+            <div style="display:flex; justify-content:center; margin-top:1.75rem;">
+                <a class="btn btn-primary" href="https://calendly.com/avrilwhsu/quick-chat-complimentary" target="_blank" rel="noopener" onclick="if(window.Calendly){Calendly.initPopupWidget({url:'https://calendly.com/avrilwhsu/quick-chat-complimentary'});return false;}">Schedule a quick chat</a>
+            </div>
         </div>
     </div>
 </section>

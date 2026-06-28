@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
 <body class="{% block body_class %}{% endblock %}">
     <nav class="topnav">
@@ -17,10 +19,10 @@
             <span></span><span></span><span></span>
         </button>
         <ul class="nav-links">
-            <li><a href="{{ url_for('substack') }}" class="{% if request.endpoint == 'substack' %}active{% endif %}">Key insights</a></li>
-            <li><a href="{{ url_for('ai_companion') }}" class="{% if request.endpoint == 'ai_companion' %}active{% endif %}">AI Avril</a></li>
-            <li><a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">About</a></li>
-            <li><a href="{{ url_for('connect') }}" class="{% if request.endpoint == 'connect' %}active{% endif %}">Contact</a></li>
+            {# <li><a href="{{ url_for('substack') }}" class="{% if request.endpoint == 'substack' %}active{% endif %}">Key insights</a></li> #}
+            <li><span class="nav-soon" aria-disabled="true">AI Avril<span class="soon-badge">Soon</span></span></li>
+            <li><a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">Why I Care</a></li>
+            {# <li><a href="{{ url_for('connect') }}" class="{% if request.endpoint == 'connect' %}active{% endif %}">Contact</a></li> #}
             <li><a class="social-icon" href="https://linkedin.com/in/avrilwhsu" target="_blank" rel="noopener" aria-label="LinkedIn">
                 <img src="{{ url_for('static', filename='icons/linkedin.svg') }}" alt="">
             </a></li>
@@ -28,7 +30,7 @@
     </nav>
     {% block content %}{% endblock %}
     <footer class="site-footer">
-        <p>Copyright &copy; 2026 by Avril W. Hsu. All Rights Reserved. Built with Claude Code.</p>
+        <p>Copyright &copy; 2026 by Avril W. Hsu. All Rights Reserved.<br>Words and ideas by Avril. Built with Claude Code. A small example of human-AI collaboration I coach.</p>
     </footer>
     <script>
         const toggle = document.querySelector('.nav-toggle');
