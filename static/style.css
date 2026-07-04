@@ -273,6 +273,10 @@ h1, h2, .credentials-lede {
     height: 48px;
 }
 
+.trusted-by-logos img.logo-pivotal {
+    height: 44px;
+}
+
 .trusted-by-extras {
     margin-top: 1.5rem;
     display: flex;
@@ -406,7 +410,7 @@ h1, h2, .credentials-lede {
     display: grid;
     grid-template-columns: 1fr 1fr;
     background: #fff;
-    min-height: 55vh;
+    min-height: 57vh;
 }
 
 .hero-side-image {
@@ -428,11 +432,11 @@ h1, h2, .credentials-lede {
 .hero-side-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: left;
     gap: 0.85rem;
-    padding: 2rem clamp(1.5rem, 2.5vw, 2.5rem);
+    padding: 8rem clamp(1.5rem, 2.5vw, 2.5rem) 2rem;
 }
 
 .hero-side-content > * {
@@ -442,7 +446,8 @@ h1, h2, .credentials-lede {
 
 .hero-side-content h1 {
     font-size: clamp(1.75rem, 3vw, 2.375rem);
-    margin: 0 0 1rem;
+    max-width: 680px;
+    margin: 0 0 1.6rem;
     line-height: 1.2;
     text-align: center;
 }
@@ -452,6 +457,17 @@ h1, h2, .credentials-lede {
     margin: 0;
     font-size: clamp(1rem, 1.5vw, 1.1875rem);
     line-height: 1.6;
+}
+
+.hero-hook {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin: 0;
+}
+
+.hero-hook p {
+    margin: 0;
 }
 
 .hero-cards {
