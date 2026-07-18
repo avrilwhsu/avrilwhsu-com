@@ -547,12 +547,14 @@ h1, h2, .credentials-lede {
 
     .hero-side-image {
         height: 360px;
+        order: 1;
     }
 
     .hero-side-content {
         padding: 2.5rem 1.5rem;
         align-items: center;
         text-align: center;
+        order: 2;
     }
 }
 
@@ -882,6 +884,7 @@ h1, h2, .credentials-lede {
     .nav-links {
         display: none;
         flex-direction: column;
+        align-items: flex-start;
         width: 100%;
         gap: 0;
         margin-top: 1rem;
@@ -892,7 +895,8 @@ h1, h2, .credentials-lede {
     }
 
     .nav-links li {
-        padding: 0.75rem 0;
+        width: 100%;
+        padding: 1.35rem 0;
         border-top: 1px solid #e5e7eb;
     }
 
